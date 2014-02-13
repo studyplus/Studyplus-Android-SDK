@@ -1,0 +1,6 @@
+
+-keepclassmembers class * {
+   @com.google.common.eventbus.Subscribe *;
+}
+
+-dontwarn sun.misc.Unsafe
