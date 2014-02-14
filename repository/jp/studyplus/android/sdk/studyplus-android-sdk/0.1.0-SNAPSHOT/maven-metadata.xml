@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>jp.studyplus.android.sdk</groupId>
+  <artifactId>studyplus-android-sdk</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20140214.040028</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20140214040028</lastUpdated>
+  </versioning>
+</metadata>
