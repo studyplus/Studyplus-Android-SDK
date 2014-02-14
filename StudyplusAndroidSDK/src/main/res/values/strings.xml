@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StudyplusAndroidSDK</string>
+    <string name="studyplus_api_base_url">https://external-api.studyplus.jp</string>
+</resources>

@@ -1,0 +1,42 @@
+apply plugin: 'android-library'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.1"
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 16
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:19.0.1'
+    compile 'com.google.guava:guava:16.0'
+}
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://" + new File(rootDir, "repository"))
+            pom.version = "1.0.0"
+            pom.groupId = 'jp.studyplus.android.sdk'
+            pom.artifactId = "studyplus-android-sdk"
+        }
+    }
+}
+
+android.libraryVariants.all { variant ->
+    def name = variant.name
+    task "javadoc-$name"(type: Javadoc) {
+        description = "Generates javadoc for build $name"
+        destinationDir = new File(destinationDir, variant.baseName)
+        source = files(variant.javaCompile.source)
+        classpath = files(android.plugin.runtimeJarList, variant.javaCompile.classpath)
+        exclude '**/R.java'
+    }
+}
