@@ -23,7 +23,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: "file://" + new File(rootDir, "repository"))
-            pom.version = "0.1.0-SNAPSHOT"
+            pom.version = "1.0.0"
             pom.groupId = 'jp.studyplus.android.sdk'
             pom.artifactId = "studyplus-android-sdk"
         }
