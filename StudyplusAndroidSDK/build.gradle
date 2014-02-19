@@ -18,14 +18,51 @@ dependencies {
 }
 
 apply plugin: 'maven'
+apply plugin: 'signing'
+
+signing {
+    sign configurations.archives
+}
 
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "file://" + new File(rootDir, "repository"))
+            beforeDeployment {
+                MavenDeployment deployment -> signing.signPom(deployment)
+            }
+            repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+                authentication(
+                    userName: sonatypeUsername,
+                    password: sonatypePassword)
+            }
             pom.version = "1.0.0"
             pom.groupId = 'jp.studyplus.android.sdk'
             pom.artifactId = "studyplus-android-sdk"
+            pom.project {
+                name 'Studyplus Android SDK'
+                packaging 'aar'
+                description 'Studyplus SDK for Android'
+                url 'https://github.com/studyplus/Studyplus-Android-SDK'
+                scm {
+                    def location = 'scm:git@github.com:studyplus/Studyplus-Android-SDK.git'
+                    url location
+                    connection location
+                    developerConnection location
+                }
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'http://opensource.org/licenses/MIT'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'x7c1'
+                        name 'haco'
+                    }
+                }
+            }
         }
     }
 }
