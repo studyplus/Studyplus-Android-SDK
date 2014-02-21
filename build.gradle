@@ -13,12 +13,3 @@ allprojects {
         mavenCentral()
     }
 }
-
-def generateIfEmpty = { projectPath ->
-    def properties = new File(projectPath, "gradle.properties")
-    if(!properties.exists()) {
-        properties << new File(properties.getAbsolutePath() + ".example").readBytes()
-    }
-}
-generateIfEmpty('./StudyplusAndroidSDK')
-generateIfEmpty('./SDKExample')
