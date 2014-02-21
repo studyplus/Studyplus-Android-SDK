@@ -11,14 +11,7 @@ android {
         versionName "1.0"
     }
     signingConfigs {
-        def generateIfEmpty = {
-            def properties = new File(project.projectDir.getAbsolutePath(), "gradle.properties")
-            if(!properties.exists()) {
-                properties << new File(properties.getAbsolutePath() + ".example").readBytes()
-            }
-        }
         release {
-            generateIfEmpty()
             storeFile file(project.properties.storeFile)
             storePassword project.properties.storePassword
             keyAlias project.properties.storeAlias
