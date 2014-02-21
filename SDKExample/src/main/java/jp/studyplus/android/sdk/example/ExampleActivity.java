@@ -60,7 +60,7 @@ public class ExampleActivity extends ActionBarActivity {
 			StudyplusApi.getClient(context).send(request.with(this));
 		}
 
-		@Subscribe
+		@Subscribe @SuppressWarnings("unused")
 		public void showMessage(SuccessfulResponse response){
 			Toast.makeText(context, "投稿完了！", Toast.LENGTH_SHORT).show();
 		}
