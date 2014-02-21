@@ -1,6 +1,7 @@
 package jp.studyplus.android.sdk.example;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -84,10 +85,16 @@ public class ExampleActivity extends ActionBarActivity {
 		}
 		@Override
 		public void onClick(View v) {
-			AuthTransit.from(activity).startActivity(
-				context.getString(R.string.sample_consumer_key),
-				context.getString(R.string.sample_consumer_key_secret)
-			);
+			try {
+				AuthTransit.from(activity).startActivity(
+						context.getString(R.string.sample_consumer_key),
+						context.getString(R.string.sample_consumer_key_secret)
+				);
+			} catch (ActivityNotFoundException e) {
+				e.printStackTrace();
+				Toast.makeText(context, R.string.sample_certification_studyplus_not_found, Toast.LENGTH_SHORT)
+						.show();
+			}
 		}
 	}
 

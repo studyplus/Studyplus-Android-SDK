@@ -28,10 +28,15 @@ dependencies {
 Open an Activity to connect with Studyplus.
 
 ```java
-AuthTransit.from(activity).startActivity(
-	context.getString("app_consumer_key"),
-	context.getString("app_consumer_key_secret")
-);
+try {
+    AuthTransit.from(activity).startActivity(
+	    context.getString("app_consumer_key"),
+	    context.getString("app_consumer_key_secret")
+    );
+} catch (ActivityNotFoundException e) {
+    e.printStackTrace();
+    Toast.makeText(context, "Need for Studyplus 2.14.0+", Toast.LENGTH_SHORT).show();
+}
 ```
 
 Then save its result.

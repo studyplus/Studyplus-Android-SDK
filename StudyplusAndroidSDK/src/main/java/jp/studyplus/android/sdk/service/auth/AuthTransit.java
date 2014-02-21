@@ -1,6 +1,7 @@
 package jp.studyplus.android.sdk.service.auth;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -24,7 +25,8 @@ public class AuthTransit {
 		return new AuthTransit(activity, requestCode);
 	}
 
-	public void startActivity(String consumerKey, String consumerSecret){
+	public void startActivity(String consumerKey, String consumerSecret)
+			throws ActivityNotFoundException {
 		Intent intent = new Intent();
 		intent.setAction(Intent.ACTION_VIEW);
 		intent.putExtra("consumer_key", consumerKey);
