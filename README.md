@@ -60,7 +60,13 @@ ApiRequest request = StudyRecordPostRequest.of(
 		.setDurationSeconds(2 * 60)
 		.build()
 );
-StudyplusApi.getClient(context).send(request);
+
+try {
+    StudyplusApi.getClient(context).send(request);
+} catch (AccessTokenNotFound e) {
+    e.printStackTrace();
+    Toast.makeText(context, "Access token not exists", Toast.LENGTH_SHORT).show();
+}
 ```
 
 ### More

@@ -4,5 +4,6 @@
     <string name="app_name">SDK Example</string>
     <string name="hello_world">Hello world!!!</string>
 
+    <string name="sample_certification_no_access_token">アクセストークンがありません。先に認証をしてください。</string>
     <string name="sample_certification_studyplus_not_found">Studyplus 2.14.0 以上のインストールが必要です。</string>
 </resources>

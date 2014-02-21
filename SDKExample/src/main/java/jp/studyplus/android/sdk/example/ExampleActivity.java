@@ -17,6 +17,7 @@ import jp.studyplus.android.sdk.service.api.ApiRequestListener;
 import jp.studyplus.android.sdk.service.api.StudyplusApi;
 import jp.studyplus.android.sdk.service.api.response.ErrorResponse;
 import jp.studyplus.android.sdk.service.api.response.SuccessfulResponse;
+import jp.studyplus.android.sdk.service.auth.AccessTokenNotFound;
 import jp.studyplus.android.sdk.service.auth.AuthTransit;
 import jp.studyplus.android.sdk.service.auth.CertificationStore;
 import jp.studyplus.android.sdk.service.studyrecord.StudyRecordBuilder;
@@ -58,7 +59,13 @@ public class ExampleActivity extends ActionBarActivity {
 					.setDurationSeconds(2 * 60)
 					.build());
 
-			StudyplusApi.getClient(context).send(request.with(this));
+			try {
+				StudyplusApi.getClient(context).send(request.with(this));
+			} catch (AccessTokenNotFound e) {
+				e.printStackTrace();
+				Toast.makeText(context, R.string. sample_certification_no_access_token, Toast.LENGTH_SHORT)
+						.show();
+			}
 		}
 
 		@Subscribe

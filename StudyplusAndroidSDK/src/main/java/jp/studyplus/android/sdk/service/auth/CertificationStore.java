@@ -46,7 +46,7 @@ public class CertificationStore {
 		return Optional.fromNullable(preferences.getString(KEY_ACCESS_TOKEN, null));
 	}
 
-	public ApiCertification getDefault(){
+	public ApiCertification getDefault() throws AccessTokenNotFound {
 		Optional<String> token = findAccessToken();
 		if (!token.isPresent()){
 			throw new AccessTokenNotFound();
