@@ -11,7 +11,12 @@ import jp.studyplus.android.sdk.service.auth.CertificationStore;
  */
 public class StudyplusApi {
 
-	public static ApiClient getClient(Context context) throws AccessTokenNotFound {
+	/**
+	 * @param context Specifies application context.
+	 * @return client for StudyplusAPI
+	 * @throws AccessTokenNotFound
+	 */
+	public static ApiClient getClient(Context context) {
 		ApiCertification certification = CertificationStore.create(context).getDefault();
 		return new ApiClient(certification);
 	}
