@@ -34,17 +34,8 @@ dependencies {
     forTesting.each{ instrumentTestCompile it }
 }
 
-apply plugin: 'maven'
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "file://" + new File(rootDir, "repository"))
-            pom.version = "1.0.0"
-            pom.groupId = 'jp.studyplus.android.sdk'
-            pom.artifactId = "studyplus-android-sdk"
-        }
-    }
+if (gradle.startParameter.taskNames.contains('uploadArchives')) {
+    apply from: 'gradle/build.publish.gradle'
 }
 
 android.libraryVariants.all { variant ->

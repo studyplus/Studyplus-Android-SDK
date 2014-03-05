@@ -4,6 +4,7 @@ import com.google.common.base.Optional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class StudyRecordBuilder {
 
@@ -33,7 +34,7 @@ public class StudyRecordBuilder {
 	}
 
 	public StudyRecordBuilder setRecordedTime(Date date){
-		String time = new SimpleDateFormat("yyyy'-'MM'-'dd' 'HH':'mm':'ss").format(date);
+		String time = new SimpleDateFormat("yyyy'-'MM'-'dd' 'HH':'mm':'ss", Locale.US).format(date);
 		this.recordedTime = Optional.of(time);
 		return this;
 	}

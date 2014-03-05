@@ -68,7 +68,7 @@ public class ExampleActivity extends ActionBarActivity {
 			}
 		}
 
-		@Subscribe
+		@Subscribe @SuppressWarnings("unused")
 		public void showMessage(SuccessfulResponse response){
 			Toast.makeText(context, "投稿完了！", Toast.LENGTH_SHORT).show();
 		}
