@@ -1,4 +1,6 @@
+
 apply plugin: 'android-library'
+apply plugin: 'android-test'
 
 android {
     compileSdkVersion 19
@@ -10,11 +12,26 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    sourceSets {
+        instrumentTest.setRoot('src/test')
+    }
+}
+
+tasks.withType(Test) {
+    systemProperty "robolectric.logging", "stdout"
 }
 
 dependencies {
     compile 'com.android.support:appcompat-v7:19.0.1'
     compile 'com.google.guava:guava:16.0'
+
+    def forTesting = [
+        'junit:junit:4.11',
+        'org.robolectric:robolectric:2.3-SNAPSHOT',
+        'com.squareup:fest-android:1.0.7',
+    ]
+    forTesting.each{ testCompile it }
+    forTesting.each{ instrumentTestCompile it }
 }
 
 if (gradle.startParameter.taskNames.contains('uploadArchives')) {

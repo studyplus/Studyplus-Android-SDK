@@ -1,6 +1,7 @@
 package jp.studyplus.android.sdk.example;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import jp.studyplus.android.sdk.service.api.ApiRequestListener;
 import jp.studyplus.android.sdk.service.api.StudyplusApi;
 import jp.studyplus.android.sdk.service.api.response.ErrorResponse;
 import jp.studyplus.android.sdk.service.api.response.SuccessfulResponse;
+import jp.studyplus.android.sdk.service.auth.AccessTokenNotFound;
 import jp.studyplus.android.sdk.service.auth.AuthTransit;
 import jp.studyplus.android.sdk.service.auth.CertificationStore;
 import jp.studyplus.android.sdk.service.studyrecord.StudyRecordBuilder;
@@ -57,7 +59,13 @@ public class ExampleActivity extends ActionBarActivity {
 					.setDurationSeconds(2 * 60)
 					.build());
 
-			StudyplusApi.getClient(context).send(request.with(this));
+			try {
+				StudyplusApi.getClient(context).send(request.with(this));
+			} catch (AccessTokenNotFound e) {
+				e.printStackTrace();
+				Toast.makeText(context, R.string. sample_certification_no_access_token, Toast.LENGTH_SHORT)
+						.show();
+			}
 		}
 
 		@Subscribe @SuppressWarnings("unused")
@@ -84,10 +92,16 @@ public class ExampleActivity extends ActionBarActivity {
 		}
 		@Override
 		public void onClick(View v) {
-			AuthTransit.from(activity).startActivity(
-				context.getString(R.string.sample_consumer_key),
-				context.getString(R.string.sample_consumer_key_secret)
-			);
+			try {
+				AuthTransit.from(activity).startActivity(
+						context.getString(R.string.sample_consumer_key),
+						context.getString(R.string.sample_consumer_key_secret)
+				);
+			} catch (ActivityNotFoundException e) {
+				e.printStackTrace();
+				Toast.makeText(context, R.string.sample_certification_studyplus_not_found, Toast.LENGTH_SHORT)
+						.show();
+			}
 		}
 	}
 
