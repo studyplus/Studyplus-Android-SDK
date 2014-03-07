@@ -1,0 +1,30 @@
+
+def apiEndPoint = {
+    def debugTasks = [
+        ':SDKExample:assembleDevelopmentDebug',
+    ]
+    def isCurrentTaskForDebug = {
+        debugTasks.any {
+            gradle.startParameter.taskNames.contains it
+        }
+    }
+    if (isCurrentTaskForDebug()){
+        project.properties.debugApiEndPoint
+    } else {
+        "https://external-api.studyplus.jp"
+    }
+}
+
+android{
+    def quote = { '"' + it + '"' }
+    release {
+        buildConfigField "String", "API_ENDPOINT", quote(apiEndPoint())
+    }
+    /**
+     * CAUTION: this debug `buildConfigField` does NOT work!
+     * rf. https://code.google.com/p/android/issues/detail?id=52962
+     */
+    debug {
+        buildConfigField "String", "API_ENDPOINT", quote(project.properties.debugApiEndPoint)
+    }
+}

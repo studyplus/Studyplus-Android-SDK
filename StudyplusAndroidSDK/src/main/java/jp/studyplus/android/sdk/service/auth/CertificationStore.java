@@ -7,7 +7,7 @@ import android.net.Uri;
 
 import com.google.common.base.Optional;
 
-import jp.studyplus.android.sdk.R;
+import jp.studyplus.android.sdk.BuildConfig;
 import jp.studyplus.android.sdk.service.api.ApiCertification;
 
 import static android.content.SharedPreferences.Editor;
@@ -19,18 +19,17 @@ public class CertificationStore {
 	private final SharedPreferences preferences;
 
 	private static String KEY_ACCESS_TOKEN = "access_token";
-	private final String baseUrl;
+	private static final String baseUrl = BuildConfig.API_ENDPOINT;
 
 	public static CertificationStore create(Context context) {
-		String baseUrl = context.getString(R.string.studyplus_api_base_url);
 		String prefName = "Certification:" + Uri.parse(baseUrl).getHost();
 		SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 		return new CertificationStore(pref, baseUrl);
 	}
 	private CertificationStore(SharedPreferences preferences, String baseUrl) {
 		this.preferences = preferences;
-		this.baseUrl = baseUrl;
 	}
+
 	public void update(Intent data){
 		if (data == null){
 			return;

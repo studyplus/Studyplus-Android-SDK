@@ -5,6 +5,30 @@ signing {
     sign configurations.archives
 }
 
+task sdkJar(type: Jar) {
+    from fileTree(dir: 'build/classes/release').matching { include 'jp/studyplus/android/sdk/**' }
+}
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.allJava
+}
+
+task androidJavadocsJar(type: Jar) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.allSource
+}
+
+artifacts {
+    archives sdkJar
+    archives androidSourcesJar
+    archives androidJavadocsJar
+}
+
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -21,7 +45,6 @@ uploadArchives {
             pom.artifactId = "studyplus-android-sdk"
             pom.project {
                 name 'Studyplus Android SDK'
-                packaging 'aar'
                 description 'Studyplus SDK for Android'
                 url 'https://github.com/studyplus/Studyplus-Android-SDK'
                 scm {
