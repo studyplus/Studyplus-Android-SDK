@@ -5,4 +5,4 @@ signing.secretKeyRingFile=__your_value__
 sonatypeUsername=__your_value__
 sonatypePassword=__your_value__
 
-debugApiEndPoint = __your_value__
+debugApiEndpoint = __your_value__
