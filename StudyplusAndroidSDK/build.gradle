@@ -36,9 +36,8 @@ dependencies {
 
 apply from: 'gradle/build.values.gradle'
 
-if (gradle.startParameter.taskNames.contains('uploadArchives')) {
-    apply from: 'gradle/build.publish.gradle'
-}
+apply from: 'gradle/build.publish.gradle'
+
 android.libraryVariants.all { variant ->
     def name = variant.name
     task "javadoc-$name"(type: Javadoc) {

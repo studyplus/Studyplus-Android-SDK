@@ -29,6 +29,10 @@ artifacts {
     archives androidJavadocsJar
 }
 
+if (!gradle.startParameter.taskNames.contains('uploadArchives')) {
+    return
+}
+
 // gradle --daemon option makes System.console() null.
 // you must turn --daemon off when executing uploadArchives.
 def requireInput = { message ->
