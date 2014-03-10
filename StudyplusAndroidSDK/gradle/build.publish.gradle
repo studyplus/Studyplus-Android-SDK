@@ -29,7 +29,12 @@ artifacts {
     archives androidJavadocsJar
 }
 
+// gradle --daemon option makes System.console() null.
+// you must turn --daemon off when executing uploadArchives.
 def requireInput = { message ->
+    if (System.console() == null){
+        throw new IllegalStateException("try turning --daemon off")
+    }
     "${System.console().readPassword(message)}"
 }
 
