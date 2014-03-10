@@ -29,6 +29,10 @@ artifacts {
     archives androidJavadocsJar
 }
 
+def requireInput = { message ->
+    "${System.console().readPassword(message)}"
+}
+
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -37,8 +41,8 @@ uploadArchives {
             }
             repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
                 authentication(
-                    userName: project.properties.sonatypeUsername,
-                    password: project.properties.sonatypePassword)
+                    userName: requireInput("\nsonatype-username:"),
+                    password: requireInput("sonatype-password:") )
             }
             pom.version = "1.0.2"
             pom.groupId = 'jp.studyplus.android.sdk'
