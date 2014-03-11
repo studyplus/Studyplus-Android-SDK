@@ -60,21 +60,14 @@ public class CertificationStore {
 
 	private static class ApiCertificationImpl implements ApiCertification{
 		private final String accessToken;
-		private final String baseUrl;
 
 		private ApiCertificationImpl(String accessToken) {
 			this.accessToken = accessToken;
-			this.baseUrl = BuildConfig.API_ENDPOINT;
 		}
 
 		@Override
 		public String getAccessToken() {
 			return accessToken;
-		}
-
-		@Override
-		public String getBaseUrl() {
-			return baseUrl;
 		}
 	}
 }

@@ -6,6 +6,4 @@ package jp.studyplus.android.sdk.service.api;
 public interface ApiCertification {
 
 	public String getAccessToken();
-
-	public String getBaseUrl();
 }
