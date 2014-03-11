@@ -19,14 +19,13 @@ public class CertificationStore {
 	private final SharedPreferences preferences;
 
 	private static String KEY_ACCESS_TOKEN = "access_token";
-	private static final String baseUrl = BuildConfig.API_ENDPOINT;
 
 	public static CertificationStore create(Context context) {
-		String prefName = "Certification:" + Uri.parse(baseUrl).getHost();
+		String prefName = "Certification:" + Uri.parse(BuildConfig.API_ENDPOINT).getHost();
 		SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
-		return new CertificationStore(pref, baseUrl);
+		return new CertificationStore(pref);
 	}
-	private CertificationStore(SharedPreferences preferences, String baseUrl) {
+	private CertificationStore(SharedPreferences preferences) {
 		this.preferences = preferences;
 	}
 
@@ -56,16 +55,16 @@ public class CertificationStore {
 		if (!token.isPresent()){
 			throw new AccessTokenNotFound();
 		}
-		return new ApiCertificationImpl(token.get(), baseUrl);
+		return new ApiCertificationImpl(token.get());
 	}
 
 	private static class ApiCertificationImpl implements ApiCertification{
 		private final String accessToken;
 		private final String baseUrl;
 
-		private ApiCertificationImpl(String accessToken, String baseUrl) {
+		private ApiCertificationImpl(String accessToken) {
 			this.accessToken = accessToken;
-			this.baseUrl = baseUrl;
+			this.baseUrl = BuildConfig.API_ENDPOINT;
 		}
 
 		@Override
