@@ -14,7 +14,7 @@ Graddle Project
 
 ```groovy
 repositories {
-    maven { url 'http://raw.github.com/studyplus/Studyplus-Android-SDK/master/repository' }
+    mavenCentral()
 }
 dependencies {
     compile 'jp.studyplus.android.sdk:studyplus-android-sdk:1.0.0'
