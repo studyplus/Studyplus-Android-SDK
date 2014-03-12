@@ -4,6 +4,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
+import jp.studyplus.android.sdk.BuildConfig;
 import jp.studyplus.android.sdk.internal.api.ApiAccess;
 import jp.studyplus.android.sdk.internal.api.ApiResponse;
 
@@ -15,7 +16,7 @@ class ApiRequester {
 	public ApiRequester(ApiRequest request, ApiCertification certification) {
 		this.request = request;
 		this.access = new ApiAccess(
-			certification.getBaseUrl() + request.getScriptPath(),
+			BuildConfig.API_ENDPOINT + request.getScriptPath(),
 			certification.getAccessToken());
 	}
 	public ApiEither request() throws IOException {

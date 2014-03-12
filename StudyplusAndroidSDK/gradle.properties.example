@@ -2,5 +2,4 @@ signing.keyId=__your_value__
 signing.password=__your_value__
 signing.secretKeyRingFile=__your_value__
 
-sonatypeUsername=__your_value__
-sonatypePassword=__your_value__
+debugApiEndpoint = __your_value__
