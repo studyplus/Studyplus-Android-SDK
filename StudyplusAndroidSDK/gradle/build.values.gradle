@@ -16,15 +16,18 @@ def apiEndpoint = {
 }
 
 android{
-    def quote = { '"' + it + '"' }
-    release {
-        buildConfigField "String", "API_ENDPOINT", quote(apiEndpoint())
-    }
-    /**
-     * CAUTION: this debug `buildConfigField` does NOT work!
-     * rf. https://code.google.com/p/android/issues/detail?id=52962
-     */
-    debug {
-        buildConfigField "String", "API_ENDPOINT", quote(project.properties.debugApiEndpoint)
+    buildTypes {
+        def quote = { '"' + it + '"' }
+
+        release {
+            buildConfigField "String", "API_ENDPOINT", quote(apiEndpoint())
+        }
+        /**
+         * CAUTION: this debug `buildConfigField` does NOT work!
+         * rf. https://code.google.com/p/android/issues/detail?id=52962
+         */
+        debug {
+            buildConfigField "String", "API_ENDPOINT", quote(project.properties.debugApiEndpoint)
+        }
     }
 }
