@@ -10,7 +10,7 @@ Studyplus SDK for Android
 
 ##Import in your Project
 
-Graddle Project
+###Gradle
 
 ```groovy
 repositories {
@@ -20,6 +20,18 @@ dependencies {
     compile 'jp.studyplus.android.sdk:studyplus-android-sdk:1.0.2'
 }
 ```
+
+###Maven
+
+```
+<dependency>
+  <groupId>jp.studyplus.android.sdk</groupId>
+  <artifactId>studyplus-android-sdk</artifactId>
+  <version>1.0.2</version>
+</dependency>
+```
+
+or download the latest JAR [via Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cstudyplus)
 
 ## Usage
 
