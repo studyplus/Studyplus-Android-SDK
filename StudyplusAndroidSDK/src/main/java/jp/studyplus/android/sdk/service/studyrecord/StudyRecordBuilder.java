@@ -3,8 +3,10 @@ package jp.studyplus.android.sdk.service.studyrecord;
 import com.google.common.base.Optional;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class StudyRecordBuilder {
 
@@ -33,15 +35,18 @@ public class StudyRecordBuilder {
 		return this;
 	}
 
-	public StudyRecordBuilder setRecordedTime(Date date){
-		String time = new SimpleDateFormat("yyyy'-'MM'-'dd' 'HH':'mm':'ss", Locale.US).format(date);
+	public StudyRecordBuilder setRecordedTime(Calendar calendar){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy'-'MM'-'dd' 'HH':'mm':'ss", Locale.US);
+		format.setTimeZone(calendar.getTimeZone());
+		String time = format.format(calendar.getTime());
 		this.recordedTime = Optional.of(time);
 		return this;
 	}
 
 	public StudyRecordSnapshot build(){
 		if (!recordedTime.isPresent()){
-			setRecordedTime(new Date());
+			Calendar current = new GregorianCalendar(TimeZone.getTimeZone("UTC"), Locale.US);
+			setRecordedTime(current);
 		}
 		if (!comment.isPresent()){
 			setComment("");
