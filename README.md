@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    compile 'jp.studyplus.android.sdk:studyplus-android-sdk:1.0.2'
+    compile 'jp.studyplus.android.sdk:studyplus-android-sdk:1.0.3'
 }
 ```
 
@@ -27,7 +27,7 @@ dependencies {
 <dependency>
   <groupId>jp.studyplus.android.sdk</groupId>
   <artifactId>studyplus-android-sdk</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
