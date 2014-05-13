@@ -53,7 +53,7 @@ uploadArchives {
                     userName: requireInput("\nsonatype-username:"),
                     password: requireInput("sonatype-password:") )
             }
-            pom.version = "1.0.2"
+            pom.version = "1.0.3"
             pom.groupId = 'jp.studyplus.android.sdk'
             pom.artifactId = "studyplus-android-sdk"
             pom.project {
