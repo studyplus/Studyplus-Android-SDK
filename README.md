@@ -85,6 +85,11 @@ try {
 
 * See also [actual examples](https://github.com/studyplus/Studyplus-Android-SDK/blob/master/SDKExample/src/main/java/jp/studyplus/android/sdk/example/ExampleActivity.java).
 
+### For contributor
+
+* Developed on AndroidStudio 1.0.0 or higher
+
 ## License
 
 * [MIT License](http://opensource.org/licenses/MIT)
+
