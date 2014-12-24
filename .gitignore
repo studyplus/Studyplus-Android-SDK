@@ -2,9 +2,11 @@
 gradle.properties
 /local.properties
 
-/.idea/workspace.xml
+/build
+/reports
 *.iml
 .idea
 
 *.tmp
+*~
 .DS_Store
