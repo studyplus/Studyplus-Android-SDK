@@ -43,7 +43,6 @@ tasks.withType(Test) {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:19.0.1'
     compile 'com.google.guava:guava:16.0'
 
     androidTestCompile('junit:junit:4.11')
