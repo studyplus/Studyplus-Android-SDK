@@ -6,7 +6,7 @@ signing {
 }
 
 task sdkJar(type: Jar) {
-    from fileTree(dir: 'build/classes/release').matching { include 'jp/studyplus/android/sdk/**' }
+    from fileTree(dir: 'build/intermediates/classes/release').matching { include 'jp/studyplus/android/sdk/**' }
 }
 
 task androidJavadocs(type: Javadoc) {
