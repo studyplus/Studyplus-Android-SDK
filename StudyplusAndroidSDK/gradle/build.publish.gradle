@@ -75,8 +75,8 @@ uploadArchives {
                 }
                 developers {
                     developer {
-                        id 'x7c1'
-                        name 'haco'
+                        id 'studyplus'
+                        name 'studyplus'
                     }
                 }
             }
