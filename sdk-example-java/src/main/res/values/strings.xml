@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">sdk-example-java</string>
+
+    <string name="status_unauthenticated">未認証</string>
+    <string name="status_authenticated">認証済</string>
+
+    <string name="start_auth_button">認証画面を開く</string>
+    <string name="post_study_record_button">投稿！</string>
+
+    <string name="consumer_key"></string>
+    <string name="consumer_secret"></string>
+
+</resources>

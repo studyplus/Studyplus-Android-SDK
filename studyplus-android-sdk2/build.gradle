@@ -1,0 +1,100 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+def versionMajor = 0
+def versionMinor = 0
+def versionPatch = 0
+def debugApiEndpoint = ""
+
+def buildPropsFile = file('build.properties')
+def buildProps = new Properties()
+
+def quote = { '"' + it + '"' }
+
+android {
+    testBuildType "debugTest"
+
+    if (buildPropsFile.canRead()) {
+        buildProps.load(new FileInputStream(buildPropsFile))
+        versionMajor = buildProps['VERSION_MAJOR'].toInteger()
+        versionMinor = buildProps['VERSION_MINOR'].toInteger()
+        versionPatch = buildProps['VERSION_PATCH'].toInteger()
+        debugApiEndpoint = buildProps['DEBUG_API_ENDPOINT'].toString()
+    } else {
+        throw new GradleException("Could not read build.properties")
+    }
+
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        version = versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "API_ENDPOINT", quote(debugApiEndpoint)
+        }
+        debugTest {
+            initWith(buildTypes.debug)
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "API_ENDPOINT", quote("https://external-api.studyplus.jp")
+        }
+    }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            output.packageLibrary.exclude("libs/*")
+            if (variant.name == android.buildTypes.release.name) {
+                outputFileName = output.outputFile.name.replace(("-release.aar"), "-${version}.aar")
+            } else if (variant.name == android.buildTypes.debug.name) {
+                outputFileName = output.outputFile.name.replace((".aar"), "-${version}.aar")
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.google.code.gson:gson:${versions.gson}"
+
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+    testImplementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
+
+
+    implementation "io.reactivex.rxjava2:rxandroid:${versions.rx2}"
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rx2}"
+
+    testImplementation 'junit:junit:4.12'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+def repo = new File(rootDir, "repository")
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository url: "file://${repo.absolutePath}"
+            pom.version = version
+            pom.groupId = 'jp.studyplus.android.sdk'
+            pom.artifactId = 'studyplus-android-sdk'
+        }
+    }
+}
