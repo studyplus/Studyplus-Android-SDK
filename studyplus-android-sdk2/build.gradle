@@ -31,6 +31,7 @@ android {
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         version = versionName
+        group = "jp.studyplus.android.sdk"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -84,17 +85,4 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
-def repo = new File(rootDir, "repository")
-
-apply plugin: 'maven'
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository url: "file://${repo.absolutePath}"
-            pom.version = version
-            pom.groupId = 'jp.studyplus.android.sdk'
-            pom.artifactId = 'studyplus-android-sdk'
-        }
-    }
-}
+apply from: 'build.publish.gradle'
