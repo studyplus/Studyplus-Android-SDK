@@ -1,32 +1,9 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-task sourceJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier "source"
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    destinationDir = file("../javadoc/")
-    failOnError false
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from tasks.javadoc.destinationDir
-}
-
-//Creating sources with comments
-task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    from android.sourceSets.main.java.srcDirs
-}
-
-artifacts {
-    archives javadocJar
-    archives androidSourcesJar
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
 }
 
 uploadArchives {
@@ -41,8 +18,8 @@ uploadArchives {
             pom.project {
                 name "Studyplus Android SDK V2"
                 packaging 'aar'
-                description ''
-                artifactId "studyplus-android-sdk"
+                description 'Studyplus Android SDK V2'
+                artifactId "studyplus-android-sdk2"
                 url 'https://github.com/studyplus/Studyplus-Android-SDK-V2'
 
                 scm {

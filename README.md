@@ -13,7 +13,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    compile ('jp.studyplus.android.sdk:studyplus-android-sdk:2.0.0@aar') {
+    implementation ('jp.studyplus.android.sdk:studyplus-android-sdk2:2.0.0@aar') {
         transitive = true
     }
 }
@@ -23,7 +23,7 @@ dependencies {
 ```
 <dependency>
   <groupId>jp.studyplus.android.sdk</groupId>
-  <artifactId>studyplus-android-sdk</artifactId>
+  <artifactId>studyplus-android-sdk2</artifactId>
   <version>2.0.0</version>
 </dependency>
 ```

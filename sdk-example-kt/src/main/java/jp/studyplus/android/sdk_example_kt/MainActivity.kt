@@ -3,8 +3,8 @@ package jp.studyplus.android.sdk_example_kt
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -26,18 +26,18 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.consumer_secret))
 
         findViewById<View>(R.id.start_auth)?.apply {
-            setOnClickListener({
+            setOnClickListener {
                 try {
                     Studyplus.instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
                 } catch (e: ActivityNotFoundException) {
                     e.printStackTrace()
                     Toast.makeText(context, "Need for Studyplus 2.14.0+", Toast.LENGTH_LONG).show()
                 }
-            })
+            }
         }
 
         findViewById<View>(R.id.post_study_record)?.apply {
-            setOnClickListener({
+            setOnClickListener {
                 val record = StudyRecordBuilder()
                         .setComment("勉強した！！！")
                         .setAmountTotal(30)
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                                 }
                             }
                         })
-            })
+            }
         }
     }
 

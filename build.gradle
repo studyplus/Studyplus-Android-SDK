@@ -11,8 +11,7 @@ buildscript {
             'gson': '2.8.2',
             'okhttp': '3.10.0',
             'retrofit' : '2.4.0',
-            'rx2' : '2.0.2',
-            'moshi' : '1.6.0'
+            'rx2' : '2.0.2'
     ]
     repositories {
         google()
