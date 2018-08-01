@@ -1,6 +1,16 @@
 Studyplus-Android-SDK
 =====================
 
+****************************************************
+****************************************************
+# Please use Version 2.
+sdk v2 : https://github.com/studyplus/Studyplus-Android-SDK-V2
+
+This version 1 is deprecated.
+
+****************************************************
+****************************************************
+
 Studyplus SDK for Android
 
 ##Requirement
