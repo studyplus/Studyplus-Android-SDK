@@ -1,7 +1,7 @@
 # Studyplus-Android-SDK-V2
 
 ## Requirements
-- Android 2.2+
+- Android 4.1+
 - [Studyplus App 2.14+](https://play.google.com/store/apps/details?id=jp.studyplus.android.app)
 
 
