@@ -76,9 +76,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
     testImplementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
 
-
-    implementation "io.reactivex.rxjava2:rxandroid:${versions.rx2}"
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rx2}"
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rx2java}"
+    implementation "io.reactivex.rxjava2:rxandroid:${versions.rx2android}"
 
     testImplementation 'junit:junit:4.12'
 
