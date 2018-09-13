@@ -15,7 +15,7 @@ constructor(retrofit: Retrofit) {
 
         private fun getOAuthAccessToken(context: Context): Observable<String> {
             return Observable.just(CertificationStore.create(context))
-                    .map { it.apiCertification.accessToken }
+                    .map { it.apiCertification() }
                     .map { "OAuth $it" }
         }
     }

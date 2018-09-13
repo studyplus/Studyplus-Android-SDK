@@ -5,8 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import jp.studyplus.android.sdk.R
 
-class AccessTokenNotFound : RuntimeException()
-
 internal class AuthTransit
 /**
  * @param consumerKey for API
