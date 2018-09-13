@@ -10,7 +10,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object ApiManager {
+internal object ApiManager {
 
     private val loggingLevel: HttpLoggingInterceptor.Level
         get() = if (BuildConfig.DEBUG) {

@@ -7,11 +7,11 @@ import android.net.Uri
 import jp.studyplus.android.sdk.BuildConfig
 import jp.studyplus.android.sdk.internal.auth.AccessTokenNotFound
 
-interface ApiCertification {
+internal interface ApiCertification {
     val accessToken: String
 }
 
-class CertificationStore
+internal class CertificationStore
 private constructor(private val preferences: SharedPreferences) {
 
     companion object {
@@ -43,8 +43,7 @@ private constructor(private val preferences: SharedPreferences) {
             return ApiCertificationImpl(token)
         }
 
-    fun update(data: Intent?) {
-        if (data == null) { return }
+    fun update(data: Intent) {
         val code = data.getStringExtra(EXTRA_SP_AUTH_RESULT_CODE).orEmpty()
         if (RESULT_CODE_AUTHENTICATED == code) {
             preferences.edit()?.apply {

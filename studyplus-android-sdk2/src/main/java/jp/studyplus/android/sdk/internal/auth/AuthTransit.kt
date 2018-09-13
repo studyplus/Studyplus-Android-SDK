@@ -7,7 +7,7 @@ import jp.studyplus.android.sdk.R
 
 class AccessTokenNotFound : RuntimeException()
 
-class AuthTransit
+internal class AuthTransit
 /**
  * @param consumerKey for API
  * @param consumerSecret for API
