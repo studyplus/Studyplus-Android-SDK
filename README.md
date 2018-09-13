@@ -1,5 +1,7 @@
 # Studyplus-Android-SDK-V2
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/jp.studyplus.android.sdk/studyplus-android-sdk2/badge.svg)](https://maven-badges.herokuapp.com/maven-central/jp.studyplus.android.sdk/studyplus-android-sdk2)
+
 ## Requirements
 - Android 4.1+
 - [Studyplus App 2.14+](https://play.google.com/store/apps/details?id=jp.studyplus.android.app)
@@ -8,23 +10,23 @@
 ## Import in your Project
 
 ### Gradle file (app)
+
 ```
 repositories {
     mavenCentral()
 }
 dependencies {
-    implementation ('jp.studyplus.android.sdk:studyplus-android-sdk2:2.0.0@aar') {
-        transitive = true
-    }
+    implementation 'jp.studyplus.android.sdk:studyplus-android-sdk2:2.0.2'
 }
 ```
 
 ### Maven
+
 ```
 <dependency>
   <groupId>jp.studyplus.android.sdk</groupId>
   <artifactId>studyplus-android-sdk2</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.2</version>
 </dependency>
 ```
 
@@ -33,6 +35,7 @@ or download the latest JAR [via Central Repository](http://search.maven.org/#sea
 ## Usage
 
 ### Setup
+
 ```
 Studyplus.instance.setup("consumer_key", "consumer_secret")
 ```
@@ -40,6 +43,7 @@ Studyplus.instance.setup("consumer_key", "consumer_secret")
 ### Authenticate
 
 Open an Activity to connect with Studyplus.
+
 ```
 try {
     Studyplus.instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
@@ -50,6 +54,7 @@ try {
 ```
 
 Then save its result.
+
 ```
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     when (requestCode) {
@@ -64,7 +69,9 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 ```
 
 ### Post a record to Studyplus
+
 Create a record and post.
+
 ```
 val record = StudyRecordBuilder()
         .setComment("勉強した！！！")
