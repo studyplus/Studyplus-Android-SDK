@@ -6,7 +6,7 @@ import jp.studyplus.android.sdk.internal.api.response.PostStudyRecordsResponse
 import jp.studyplus.android.sdk.record.StudyRecord
 import retrofit2.Retrofit
 
-class ApiClient
+internal class ApiClient
 constructor(retrofit: Retrofit) {
 
     companion object {
@@ -15,7 +15,7 @@ constructor(retrofit: Retrofit) {
 
         private fun getOAuthAccessToken(context: Context): Observable<String> {
             return Observable.just(CertificationStore.create(context))
-                    .map { it.apiCertification.accessToken }
+                    .map { it.apiCertification() }
                     .map { "OAuth $it" }
         }
     }

@@ -1,5 +1,6 @@
 package jp.studyplus.android.sdk
 
+import jp.studyplus.android.sdk.internal.api.MockApiClient
 import jp.studyplus.android.sdk.record.StudyRecordBuilder
 import org.junit.Test
 

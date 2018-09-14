@@ -5,13 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import jp.studyplus.android.sdk.BuildConfig
-import jp.studyplus.android.sdk.internal.auth.AccessTokenNotFound
 
-interface ApiCertification {
-    val accessToken: String
-}
-
-class CertificationStore
+internal class CertificationStore
 private constructor(private val preferences: SharedPreferences) {
 
     companion object {
@@ -34,17 +29,9 @@ private constructor(private val preferences: SharedPreferences) {
         return !token.isNullOrEmpty()
     }
 
-    val apiCertification: ApiCertification
-        get() {
-            val token = preferences.getString(KEY_ACCESS_TOKEN, "")
-            if (token.isNullOrEmpty()) {
-                throw AccessTokenNotFound()
-            }
-            return ApiCertificationImpl(token)
-        }
+    fun apiCertification(): String = preferences.getString(KEY_ACCESS_TOKEN, "")
 
-    fun update(data: Intent?) {
-        if (data == null) { return }
+    fun update(data: Intent) {
         val code = data.getStringExtra(EXTRA_SP_AUTH_RESULT_CODE).orEmpty()
         if (RESULT_CODE_AUTHENTICATED == code) {
             preferences.edit()?.apply {
@@ -53,7 +40,4 @@ private constructor(private val preferences: SharedPreferences) {
             }
         }
     }
-
-    private class ApiCertificationImpl
-    constructor(override val accessToken: String) : ApiCertification
 }
