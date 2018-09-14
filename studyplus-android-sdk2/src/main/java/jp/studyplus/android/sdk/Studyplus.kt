@@ -55,7 +55,7 @@ class Studyplus private constructor() {
      */
     fun setAuthResult(context: Context, data: Intent?) {
         if (data == null) {
-            Log.e("StudyplusSDK", "The data is null. Please check your code. If the received data is already null, please contact Studyplus Dev team.")
+            Log.e("StudyplusSDK", "The data is null. Please check your code. If the data that received from Studyplus app is null, please contact Studyplus Dev team.")
             return
         }
 
