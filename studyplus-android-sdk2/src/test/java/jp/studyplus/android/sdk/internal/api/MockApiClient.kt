@@ -1,13 +1,12 @@
-package jp.studyplus.android.sdk
+package jp.studyplus.android.sdk.internal.api
 
 import android.content.Context
 import io.reactivex.Observable
-import jp.studyplus.android.sdk.internal.api.ApiService
 import jp.studyplus.android.sdk.internal.api.response.PostStudyRecordsResponse
 import jp.studyplus.android.sdk.record.StudyRecord
 import retrofit2.mock.MockRetrofit
 
-class MockApiClient
+internal class MockApiClient
 constructor(retrofit: MockRetrofit) {
 
     companion object {

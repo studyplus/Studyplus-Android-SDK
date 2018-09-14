@@ -1,11 +1,10 @@
-package jp.studyplus.android.sdk
+package jp.studyplus.android.sdk.internal.api
 
-import jp.studyplus.android.sdk.internal.api.ApiManager
 import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
 import java.util.concurrent.TimeUnit
 
-object MockApiManager {
+internal object MockApiManager {
     val retrofit by lazy {
         val behavior = NetworkBehavior.create()
         behavior.setDelay(100, TimeUnit.MILLISECONDS)
