@@ -1,13 +1,10 @@
 package jp.studyplus.android.sdk.internal.api
 
 import android.content.Context
-import io.reactivex.Observable
-import jp.studyplus.android.sdk.internal.api.response.PostStudyRecordsResponse
 import jp.studyplus.android.sdk.record.StudyRecord
 import retrofit2.mock.MockRetrofit
 
-internal class MockApiClient
-constructor(retrofit: MockRetrofit) {
+internal class MockApiClient constructor(retrofit: MockRetrofit) {
 
     companion object {
         val apiClient by lazy { MockApiClient(MockApiManager.retrofit) }
@@ -19,7 +16,6 @@ constructor(retrofit: MockRetrofit) {
         apiService = MockApiService(delegate)
     }
 
-    fun postStudyRecords(context: Context?, studyRecord: StudyRecord): Observable<PostStudyRecordsResponse> {
-        return apiService.postStudyRecords("", studyRecord)
-    }
+    fun postStudyRecords(context: Context?, studyRecord: StudyRecord) =
+            apiService.postStudyRecords("", studyRecord)
 }
