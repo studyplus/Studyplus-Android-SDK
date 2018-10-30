@@ -1,9 +1,12 @@
 package jp.studyplus.android.sdk.internal.api
 
-import io.reactivex.Observable
 import jp.studyplus.android.sdk.internal.api.response.PostStudyRecordsResponse
 import jp.studyplus.android.sdk.record.StudyRecord
-import retrofit2.http.*
+import kotlinx.coroutines.Deferred
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
 internal interface ApiService {
     @Headers(value = [
@@ -13,6 +16,6 @@ internal interface ApiService {
     @POST("/v1/study_records")
     fun postStudyRecords(
             @Header("Authorization") oauth: String,
-            @Body studyRecord: StudyRecord)
-            : Observable<PostStudyRecordsResponse>
+            @Body studyRecord: StudyRecord
+    ): Deferred<PostStudyRecordsResponse>
 }

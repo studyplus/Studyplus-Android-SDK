@@ -20,5 +20,14 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep public class jp.studyplus.android.sdk.* { public *; }
--keep public class jp.studyplus.android.sdk.record.** { public *; }
+# ServiceLoader support
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+
+# Most of volatile fields are updated with AFU and should not be mangled
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
+}
+
+# Network Rsponse
+-keepnames class jp.studyplus.android.sdk.internal.api.response.** { *; }
