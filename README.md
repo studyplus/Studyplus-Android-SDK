@@ -16,7 +16,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'jp.studyplus.android.sdk:studyplus-android-sdk2:2.0.2'
+    implementation 'jp.studyplus.android.sdk:studyplus-android-sdk2:2.1.0'
 }
 ```
 
@@ -26,7 +26,7 @@ dependencies {
 <dependency>
   <groupId>jp.studyplus.android.sdk</groupId>
   <artifactId>studyplus-android-sdk2</artifactId>
-  <version>2.0.2</version>
+  <version>2.1.0</version>
 </dependency>
 ```
 
