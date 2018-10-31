@@ -29,7 +29,10 @@ private constructor(private val preferences: SharedPreferences) {
         return !token.isNullOrEmpty()
     }
 
-    fun apiCertification(): String = preferences.getString(KEY_ACCESS_TOKEN, "")
+    fun getOAuthAccessToken(): String {
+        val certification = preferences.getString(KEY_ACCESS_TOKEN, "")
+        return "OAuth $certification"
+    }
 
     fun update(data: Intent) {
         val code = data.getStringExtra(EXTRA_SP_AUTH_RESULT_CODE).orEmpty()

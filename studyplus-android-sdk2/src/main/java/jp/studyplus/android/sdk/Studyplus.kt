@@ -4,12 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import jp.studyplus.android.sdk.internal.api.ApiClient
 import jp.studyplus.android.sdk.internal.api.CertificationStore
 import jp.studyplus.android.sdk.internal.auth.AuthTransit
 import jp.studyplus.android.sdk.record.StudyRecord
+import kotlinx.coroutines.runBlocking
 
 class Studyplus private constructor() {
 
@@ -72,13 +71,15 @@ class Studyplus private constructor() {
             throw IllegalStateException("Please check your application's authentication before this method call.")
         }
 
-        ApiClient.apiClient.postStudyRecords(context, studyRecord)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { listener?.onResult(success = true, recordId = it.recordId) },
-                        { listener?.onResult(success = false, throwable = it) }
-                )
+        runBlocking {
+            try {
+                val deferred = ApiClient.postStudyRecords(context, studyRecord)
+                val result = deferred.await()
+                listener?.onResult(success = true, recordId = result.recordId)
+            } catch (t: Throwable) {
+                listener?.onResult(success = false, throwable = t)
+            }
+        }
     }
 
     companion object {
