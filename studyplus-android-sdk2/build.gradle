@@ -74,12 +74,11 @@ dependencies {
     def retrofit = "2.4.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    testImplementation "com.squareup.retrofit2:retrofit-mock:$retrofit"
-
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 
     testImplementation 'junit:junit:4.12'
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    testImplementation "com.squareup.retrofit2:retrofit-mock:$retrofit"
 }
 
 apply from: 'build.publish.gradle'

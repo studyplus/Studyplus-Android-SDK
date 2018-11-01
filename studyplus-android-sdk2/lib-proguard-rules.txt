@@ -21,7 +21,8 @@
 #-renamesourcefileattribute SourceFile
 
 # SDK2
-# Network Rsponse
+# Network Response
+-keepnames class jp.studyplus.android.sdk.record.** { *; }
 -keepnames class jp.studyplus.android.sdk.internal.api.response.** { *; }
 
 # Kotlin Coroutines
