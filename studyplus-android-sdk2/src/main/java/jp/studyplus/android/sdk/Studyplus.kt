@@ -74,8 +74,8 @@ class Studyplus private constructor() {
         runBlocking {
             try {
                 val deferred = ApiClient.postStudyRecords(context, studyRecord)
-                val result = deferred.await()
-                listener?.onResult(success = true, recordId = result.recordId)
+                val recordId = deferred.await()
+                listener?.onResult(success = true, recordId = recordId)
             } catch (t: Throwable) {
                 listener?.onResult(success = false, throwable = t)
             }
