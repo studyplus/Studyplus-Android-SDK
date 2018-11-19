@@ -14,10 +14,10 @@ class ApiUnitTest {
         val record = StudyRecordBuilder().build()
         runBlocking {
             try {
-                val deferred = MockApiClient.apiClient.postStudyRecords(null, record)
-                val result = deferred.await()
+                val deferred = MockApiClient.postStudyRecords(null, record)
+                val recordId = deferred.await()
 
-                assertEquals(result.recordId, 9999L)
+                assertEquals(recordId, 9999L)
             } catch (t: Throwable) {
                 assertNull(t)
             }
