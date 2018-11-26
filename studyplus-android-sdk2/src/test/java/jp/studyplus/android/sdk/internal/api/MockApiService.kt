@@ -5,12 +5,13 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import org.json.JSONObject
 
 internal class MockApiService(private val client: OkHttpClient) {
 
     fun post(json: String): Deferred<Long?> {
         val server = MockWebServer()
-        server.enqueue(MockResponse().setBody(""""{"record_id": 9999L}"""))
+        server.enqueue(MockResponse().setBody(JSONObject().apply { put("record_id", 9999L) }.toString()))
         server.start()
 
         val body = createPostBody(json)

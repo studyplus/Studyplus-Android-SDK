@@ -60,6 +60,12 @@ android {
             }
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -74,6 +80,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
 
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.robolectric:robolectric:4.0.2'
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp"
 }
