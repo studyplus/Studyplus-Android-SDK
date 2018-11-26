@@ -16,7 +16,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'jp.studyplus.android.sdk:studyplus-android-sdk2:2.1.2'
+    implementation 'jp.studyplus.android.sdk:studyplus-android-sdk2:2.2.0'
 }
 ```
 
