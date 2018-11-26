@@ -4,9 +4,12 @@ import jp.studyplus.android.sdk.internal.api.MockApiClient
 import jp.studyplus.android.sdk.record.StudyRecordBuilder
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
+@RunWith(RobolectricTestRunner::class)
 class ApiUnitTest {
 
     @Test
@@ -14,10 +17,10 @@ class ApiUnitTest {
         val record = StudyRecordBuilder().build()
         runBlocking {
             try {
-                val deferred = MockApiClient.apiClient.postStudyRecords(null, record)
-                val result = deferred.await()
+                val deferred = MockApiClient.postStudyRecords(null, record)
+                val recordId = deferred.await()
 
-                assertEquals(result.recordId, 9999L)
+                assertEquals(recordId, 9999L)
             } catch (t: Throwable) {
                 assertNull(t)
             }

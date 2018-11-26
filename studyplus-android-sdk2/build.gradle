@@ -60,25 +60,29 @@ android {
             }
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
 
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    def coroutines = "1.0.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
-    def retrofit = "2.4.0"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+    def okhttp = "3.12.0"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
 
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.robolectric:robolectric:4.0.2'
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testImplementation "com.squareup.retrofit2:retrofit-mock:$retrofit"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp"
 }
 
 apply from: 'build.publish.gradle'
