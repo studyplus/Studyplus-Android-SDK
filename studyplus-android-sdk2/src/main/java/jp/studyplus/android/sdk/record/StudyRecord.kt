@@ -19,7 +19,7 @@ class StudyRecord {
         put("recorded_at", recordedTime)
         put("duration", duration)
         put("comment", comment)
-        put("amountTotal", amountTotal)
+        put("amount", amountTotal)
         put("start_position", startPosition)
         put("end_position", endPosition)
     }.toString()
