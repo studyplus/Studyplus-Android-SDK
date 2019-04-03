@@ -7,14 +7,13 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
+※日本語の起票を歓迎します
+
+**機能が必要になった背景を記載してください.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-**Describe the solution you'd like**
+**どの様な機能が欲しいかを記載してください**
 A clear and concise description of what you want to happen.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
+**(Option)補足項目**
 Add any other context or screenshots about the feature request here.
