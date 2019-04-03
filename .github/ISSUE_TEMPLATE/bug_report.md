@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-※日本語の起票を歓迎します
+※日本語での起票を歓迎します
 
 **バグの詳細**
 A clear and concise description of what the bug is.
