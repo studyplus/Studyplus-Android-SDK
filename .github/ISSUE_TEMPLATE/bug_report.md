@@ -9,10 +9,10 @@ assignees: ''
 
 ※日本語の起票を歓迎します
 
-**バクの詳細**
+**バグの詳細**
 A clear and concise description of what the bug is.
 
-**再現手順e**
+**再現手順**
 Steps to reproduce the behavior:
 1. Go to '...'
 2. Click on '....'
@@ -25,7 +25,7 @@ A clear and concise description of what you expected to happen.
 **スクリーンショット**
 If applicable, add screenshots to help explain your problem.
 
-**Smartphone (please complete the following information):**
+**環境 (問題が再現する環境について、下記の項目を埋めてください):**
  - OS: [e.g. Android 8.1]
  - Device: [e.g. Nexus 5x]
  - SDK Version [e.g. 2.1.0]
