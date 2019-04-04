@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-※日本語の起票を歓迎します
+※日本語での起票を歓迎します
 
 **機能が必要になった背景を記載してください**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
