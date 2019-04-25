@@ -1,6 +1,6 @@
 # Studyplus-Android-SDK-V2
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/jp.studyplus.android.sdk/studyplus-android-sdk2/badge.svg)](https://maven-badges.herokuapp.com/maven-central/jp.studyplus.android.sdk/studyplus-android-sdk2)
+[![CircleCI](https://circleci.com/gh/studyplus/Studyplus-Android-SDK-V2/tree/master.svg?style=svg)](https://circleci.com/gh/studyplus/Studyplus-Android-SDK-V2/tree/master) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/jp.studyplus.android.sdk/studyplus-android-sdk2/badge.svg)](https://maven-badges.herokuapp.com/maven-central/jp.studyplus.android.sdk/studyplus-android-sdk2)
 
 ## Requirements
 - Android 4.1+
