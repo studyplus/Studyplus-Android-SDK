@@ -7,7 +7,7 @@ executors:
       JAVA_OPTS: -Xmx3200m
 
 commands:
-  setup:
+  setup_android:
     steps:
       - restore_cache:
           key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk2/build.gradle" }}
@@ -52,7 +52,7 @@ jobs:
       name: default
     steps:
       - checkout
-      - setup
+      - setup_android
       - unit_test
   run_danger:
     executor:
@@ -63,13 +63,7 @@ jobs:
       - run_danger
 
 workflows:
-  test:
-    jobs:
-      - run_test:
-          filters:
-            branches:
-              only:
-                - master
   pull_request:
     jobs:
+      - run_test
       - run_danger
