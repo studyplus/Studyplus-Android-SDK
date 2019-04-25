@@ -22,7 +22,7 @@ commands:
     steps:
       - run:
           name: Run Tests
-          command: ./gradlew lint test
+          command: ./gradlew studyplus-android-sdk2:lint studyplus-android-sdk2:test
       - store_artifacts:
           path: studyplus-android-sdk2/build/reports
           destination: reports
