@@ -2,7 +2,7 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: circleci/android:api-28
+      - image: circleci/android:api-27
     environment:
       JAVA_OPTS: -Xmx3200m
 
