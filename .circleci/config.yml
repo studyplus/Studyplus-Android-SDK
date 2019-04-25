@@ -35,7 +35,7 @@ commands:
           key: v1-danger-cache-{{ checksum "Gemfile.lock" }}
       - run:
           name: Bundle install for Danger and fastlane
-          command: bundle check || bundle install --path vendor/bundle --clean
+          command: bundle check --path vendor/bundle || bundle install --path vendor/bundle --clean
       - save_cache:
           paths:
             - vendor/bundle
