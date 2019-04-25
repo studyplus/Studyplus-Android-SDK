@@ -29,6 +29,23 @@ commands:
       - store_test_results:
           path: studyplus-android-sdk2/build/test-results
 
+  setup_bundle:
+    steps:
+      - restore_cache:
+          key: v1-danger-cache-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Bundle install for Danger and fastlane
+          command: bundle check || bundle install --path vendor/bundle --clean
+      - save_cache:
+          paths:
+            - vendor/bundle
+          key: v1-danger-cache-{{ checksum "Gemfile.lock" }}
+  run_danger:
+    steps:
+      - run:
+          name: Run danger
+          command: bundle exec danger
+
 jobs:
   run_test:
     executor:
@@ -37,8 +54,22 @@ jobs:
       - checkout
       - setup
       - unit_test
+  run_danger:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - setup_bundle
+      - run_danger
 
 workflows:
   test:
     jobs:
-      - run_test
+      - run_test:
+          filters:
+            branches:
+              only:
+                - master
+  pull_request:
+    jobs:
+      - run_danger
