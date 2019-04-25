@@ -10,14 +10,14 @@ commands:
   setup:
     steps:
       - restore_cache:
-          key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk/build.gradle" }}
+          key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk2/build.gradle" }}
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk/build.gradle" }}
+          key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk2/build.gradle" }}
   unit_test:
     steps:
       - run:
