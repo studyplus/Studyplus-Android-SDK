@@ -47,23 +47,24 @@ commands:
           command: bundle exec danger
 
 jobs:
-  run_test:
+  unit_test:
     executor:
       name: default
     steps:
       - checkout
       - setup_android
       - unit_test
-  run_danger:
+  check_pr:
     executor:
       name: default
     steps:
       - checkout
+      - setup_android
       - setup_bundle
       - run_danger
 
 workflows:
   pull_request:
     jobs:
-      - run_test
-      - run_danger
+      - unit_test
+      - check_pr
