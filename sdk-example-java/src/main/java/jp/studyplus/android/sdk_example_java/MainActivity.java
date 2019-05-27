@@ -3,14 +3,13 @@ package jp.studyplus.android.sdk_example_java;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import jp.studyplus.android.sdk.Studyplus;
 import jp.studyplus.android.sdk.record.StudyRecord;
 import jp.studyplus.android.sdk.record.StudyRecordBuilder;
