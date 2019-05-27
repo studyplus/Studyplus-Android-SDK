@@ -14,10 +14,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "API_ENDPOINT", "")
+            buildConfigField("String", "API_ENDPOINT", "\"\"")
         }
         release {
-            buildConfigField("String", "API_ENDPOINT", "https://external-api.studyplus.jp")
+            buildConfigField("String", "API_ENDPOINT", "\"https://external-api.studyplus.jp\"")
         }
     }
 
