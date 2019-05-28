@@ -73,11 +73,11 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 Create a record and post.
 
 ```
-val record = StudyRecordBuilder()
-        .setComment("勉強した！！！")
-        .setAmountTotal(30)
-        .setDurationSeconds(2 * 60)
-        .build()
+val record = StudyRecord(
+    duration = 2 * 60,
+    comment = "勉強した！！！",
+    amount = StudyRecordAmount(30)
+)
 Studyplus.instance.postRecord(this@MainActivity, record,
         object : Studyplus.Companion.OnPostRecordListener {
             override fun onResult(success: Boolean, recordId: Long?, throwable: Throwable?) {
