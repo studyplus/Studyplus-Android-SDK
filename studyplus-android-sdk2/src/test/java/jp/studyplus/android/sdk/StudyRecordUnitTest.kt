@@ -5,8 +5,11 @@ import jp.studyplus.android.sdk.record.StudyRecordAmountRange
 import jp.studyplus.android.sdk.record.StudyRecordAmountTotal
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 import java.util.*
 
+@RunWith(RobolectricTestRunner::class)
 class StudyRecordUnitTest {
 
     @Test
@@ -14,7 +17,7 @@ class StudyRecordUnitTest {
         val studyRecord = StudyRecord(2 * 60)
 
         assertEquals(
-            "{\"duration\":120,\"recorded_at\":\"${StudyRecord.formatTime(studyRecord.recordedTime)}\"}",
+            "{\"recorded_at\":\"${StudyRecord.formatTime(studyRecord.recordedTime)}\",\"duration\":120}",
             studyRecord.toJson()
         )
     }
@@ -29,7 +32,7 @@ class StudyRecordUnitTest {
         )
 
         assertEquals(
-            "{\"duration\":120,\"recorded_at\":\"2019-06-01 01:02:03\",\"amount\":30,\"comment\":\"perfect!\"}",
+            "{\"recorded_at\":\"2019-06-01 01:02:03\",\"duration\":120,\"comment\":\"perfect!\",\"amount\":30}",
             studyRecord.toJson()
         )
     }
@@ -44,7 +47,7 @@ class StudyRecordUnitTest {
         )
 
         assertEquals(
-            "{\"duration\":120,\"start_position\":5,\"recorded_at\":\"2019-06-01 01:02:03\",\"comment\":\"perfect!\",\"end_position\":12}",
+            "{\"recorded_at\":\"2019-06-01 01:02:03\",\"duration\":120,\"comment\":\"perfect!\",\"start_position\":5,\"end_position\":12}",
             studyRecord.toJson()
         )
     }
