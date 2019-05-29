@@ -4,12 +4,13 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import jp.studyplus.android.sdk.Studyplus
-import jp.studyplus.android.sdk.record.StudyRecordBuilder
+import jp.studyplus.android.sdk.record.StudyRecord
+import jp.studyplus.android.sdk.record.StudyRecordAmountTotal
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,8 +23,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Studyplus.instance.setup(
-                getString(R.string.consumer_key),
-                getString(R.string.consumer_secret))
+            getString(R.string.consumer_key),
+            getString(R.string.consumer_secret)
+        )
 
         findViewById<View>(R.id.start_auth)?.apply {
             setOnClickListener {
@@ -38,24 +40,24 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.post_study_record)?.apply {
             setOnClickListener {
-                val record = StudyRecordBuilder()
-                        .setComment("勉強した！！！")
-                        .setAmountTotal(30)
-                        .setDurationSeconds(2 * 60)
-                        .build()
+                val record = StudyRecord(
+                    duration = 2 * 60,
+                    amount = StudyRecordAmountTotal(30),
+                    comment = "勉強した！！！"
+                )
                 Studyplus.instance.postRecord(this@MainActivity, record,
-                        object : Studyplus.Companion.OnPostRecordListener {
-                            override fun onResult(success: Boolean, recordId: Long?, throwable: Throwable?) {
-                                if (success) {
-                                    Toast.makeText(context, "Post Study Record!! ($recordId)", Toast.LENGTH_LONG).show()
-                                } else {
-                                    throwable?.apply {
-                                        Toast.makeText(context, "error!!", Toast.LENGTH_LONG).show()
-                                        printStackTrace()
-                                    }
+                    object : Studyplus.Companion.OnPostRecordListener {
+                        override fun onResult(success: Boolean, recordId: Long?, throwable: Throwable?) {
+                            if (success) {
+                                Toast.makeText(context, "Post Study Record!! ($recordId)", Toast.LENGTH_LONG).show()
+                            } else {
+                                throwable?.apply {
+                                    Toast.makeText(context, "error!!", Toast.LENGTH_LONG).show()
+                                    printStackTrace()
                                 }
                             }
-                        })
+                        }
+                    })
             }
         }
     }
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         val authStatusText = findViewById<TextView>(R.id.auth_status)
-        authStatusText.text = when(Studyplus.instance.isAuthenticated(this)) {
+        authStatusText.text = when (Studyplus.instance.isAuthenticated(this)) {
             true -> getString(R.string.status_authenticated)
             else -> getString(R.string.status_unauthenticated)
         }

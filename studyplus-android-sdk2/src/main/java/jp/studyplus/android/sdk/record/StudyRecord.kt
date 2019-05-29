@@ -1,27 +1,34 @@
 package jp.studyplus.android.sdk.record
 
-import jp.studyplus.android.sdk.record.StudyRecord.Companion.getTime
 import org.json.JSONObject
-import java.security.InvalidParameterException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class StudyRecord {
-    var recordedTime: String = getTime(GregorianCalendar(DATE_TIME_ZONE, DATE_LOCALE))
+/**
+ * Studyplusに投稿する学習記録
+ *
+ * @param duration      学習時間(s)
+ * @param amount        学習量
+ * @param comment       学習に関するコメント
+ * @param recordedTime  学習を終えた日時
+ * @since 2.5.0
+ */
+data class StudyRecord @JvmOverloads constructor(
+    val duration: Int,
+    val amount: StudyRecordAmount? = null,
+    val comment: String? = null,
+    val recordedTime: Calendar = Calendar.getInstance(DATE_TIME_ZONE, DATE_LOCALE)
+) {
 
-    var duration: Int = 0
-    var comment: String = ""
-    var amountTotal: Int? = null
-    var startPosition: Int? = null
-    var endPosition: Int? = null
-
-    fun toJson() = JSONObject().apply {
-        put("recorded_at", recordedTime)
+    internal fun toJson(): String = JSONObject().apply {
+        put("recorded_at", formatTime(recordedTime))
         put("duration", duration)
-        put("comment", comment)
-        put("amount", amountTotal)
-        put("start_position", startPosition)
-        put("end_position", endPosition)
+        comment?.let { put("comment", it) }
+        amount?.let { studyRecordAmount ->
+            studyRecordAmount.amountTotal?.let { put("amount", it) }
+            studyRecordAmount.startPosition?.let { put("start_position", it) }
+            studyRecordAmount.endPosition?.let { put("end_position", it) }
+        }
     }.toString()
 
     companion object {
@@ -29,52 +36,11 @@ class StudyRecord {
         private val DATE_LOCALE: Locale = Locale.US
         private val DATE_TIME_ZONE: TimeZone = TimeZone.getTimeZone("UTC")
 
-        internal fun getTime(calendar: Calendar): String {
+        internal fun formatTime(calendar: Calendar): String {
             val format = SimpleDateFormat(DATE_FORMAT, DATE_LOCALE)
             format.timeZone = calendar.timeZone
             return format.format(calendar.time)
         }
     }
-}
 
-class StudyRecordBuilder {
-
-    private val studyRecord = StudyRecord()
-
-    fun build(): StudyRecord {
-        return studyRecord
-    }
-
-    fun setRecordedTime(calendar: Calendar): StudyRecordBuilder {
-        studyRecord.recordedTime = getTime(calendar)
-        return this
-    }
-
-    fun setDurationSeconds(duration: Int): StudyRecordBuilder {
-        studyRecord.duration = duration
-        return this
-    }
-
-    fun setComment(comment: String): StudyRecordBuilder {
-        studyRecord.comment = comment
-        return this
-    }
-
-    fun setAmountTotal(amount: Int): StudyRecordBuilder {
-        if (studyRecord.startPosition != null
-                || studyRecord.endPosition != null) {
-            throw InvalidParameterException()
-        }
-        studyRecord.amountTotal = amount
-        return this
-    }
-
-    fun setAmountRange(start: Int, end: Int): StudyRecordBuilder {
-        if (studyRecord.amountTotal != null) {
-            throw InvalidParameterException()
-        }
-        studyRecord.startPosition = start
-        studyRecord.endPosition = end
-        return this
-    }
 }

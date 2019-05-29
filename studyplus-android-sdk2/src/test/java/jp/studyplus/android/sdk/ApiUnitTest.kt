@@ -1,7 +1,7 @@
 package jp.studyplus.android.sdk
 
 import jp.studyplus.android.sdk.internal.api.MockApiClient
-import jp.studyplus.android.sdk.record.StudyRecordBuilder
+import jp.studyplus.android.sdk.record.StudyRecord
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,7 +14,7 @@ class ApiUnitTest {
 
     @Test
     fun mockApi() {
-        val record = StudyRecordBuilder().build()
+        val record = StudyRecord(2 * 60)
         runBlocking {
             try {
                 val deferred = MockApiClient.postStudyRecords(null, record)
