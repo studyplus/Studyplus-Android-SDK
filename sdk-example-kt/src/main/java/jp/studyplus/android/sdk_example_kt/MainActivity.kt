@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity() {
             setOnClickListener {
                 val record = StudyRecord(
                     duration = 2 * 60,
-                    comment = "勉強した！！！",
-                    amount = StudyRecordAmountTotal(30)
+                    amount = StudyRecordAmountTotal(30),
+                    comment = "勉強した！！！"
                 )
                 Studyplus.instance.postRecord(this@MainActivity, record,
                     object : Studyplus.Companion.OnPostRecordListener {

@@ -8,16 +8,16 @@ import java.util.*
  * Studyplusに投稿する学習記録
  *
  * @param duration      学習時間(s)
- * @param recordedTime  学習を終えた日時
- * @param comment       学習に関するコメント
  * @param amount        学習量
+ * @param comment       学習に関するコメント
+ * @param recordedTime  学習を終えた日時
  * @since 2.5.0
  */
 data class StudyRecord @JvmOverloads constructor(
-    var duration: Int,
-    var recordedTime: Calendar = Calendar.getInstance(DATE_TIME_ZONE, DATE_LOCALE),
-    var comment: String? = null,
-    var amount: StudyRecordAmount? = null
+    val duration: Int,
+    val amount: StudyRecordAmount? = null,
+    val comment: String? = null,
+    val recordedTime: Calendar = Calendar.getInstance(DATE_TIME_ZONE, DATE_LOCALE)
 ) {
 
     internal fun toJson(): String = JSONObject().apply {

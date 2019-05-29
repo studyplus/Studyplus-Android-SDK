@@ -23,9 +23,9 @@ class StudyRecordUnitTest {
     fun toJsonTest_allParams_amountTotal() {
         val studyRecord = StudyRecord(
             duration = 2 * 60,
-            recordedTime = Calendar.getInstance().apply { set(2019, 5, 1, 1, 2, 3) },
+            amount = StudyRecordAmountTotal(30),
             comment = "perfect!",
-            amount = StudyRecordAmountTotal(30)
+            recordedTime = Calendar.getInstance().apply { set(2019, 5, 1, 1, 2, 3) }
         )
 
         assertEquals(
@@ -38,9 +38,9 @@ class StudyRecordUnitTest {
     fun toJsonTest_allParams_amountRange() {
         val studyRecord = StudyRecord(
             duration = 2 * 60,
-            recordedTime = Calendar.getInstance().apply { set(2019, 5, 1, 1, 2, 3) },
+            amount = StudyRecordAmountRange(5, 12),
             comment = "perfect!",
-            amount = StudyRecordAmountRange(5, 12)
+            recordedTime = Calendar.getInstance().apply { set(2019, 5, 1, 1, 2, 3) }
         )
 
         assertEquals(

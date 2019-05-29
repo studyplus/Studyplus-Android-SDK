@@ -40,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button postRecordButton = findViewById(R.id.post_study_record);
         postRecordButton.setOnClickListener(view -> {
-            StudyRecord record = new StudyRecord(2 * 60);
-            record.setAmount(new StudyRecordAmountTotal(30));
-            record.setComment("勉強した！！！");
-
+            StudyRecord record = new StudyRecord(2 * 60, new StudyRecordAmountTotal(30), "勉強した！！！");
             Studyplus.getInstance().postRecord(MainActivity.this, record,
                     (success, recordId, throwable) -> {
                         if (success) {
