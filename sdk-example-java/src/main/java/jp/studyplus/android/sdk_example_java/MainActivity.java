@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import jp.studyplus.android.sdk.Studyplus;
 import jp.studyplus.android.sdk.record.StudyRecord;
-import jp.studyplus.android.sdk.record.StudyRecordAmount;
+import jp.studyplus.android.sdk.record.StudyRecordAmountTotal;
 
 import java.util.Locale;
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Button postRecordButton = findViewById(R.id.post_study_record);
         postRecordButton.setOnClickListener(view -> {
             StudyRecord record = new StudyRecord(2 * 60);
-            record.setAmount(new StudyRecordAmount(30));
+            record.setAmount(new StudyRecordAmountTotal(30));
             record.setComment("勉強した！！！");
 
             Studyplus.getInstance().postRecord(MainActivity.this, record,

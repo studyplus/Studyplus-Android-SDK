@@ -11,7 +11,7 @@ import java.util.*
  * @param recordedTime  学習を終えた日時
  * @param comment       学習に関するコメント
  * @param amount        学習量
- * @since 2.3.0
+ * @since 2.5.0
  */
 data class StudyRecord @JvmOverloads constructor(
     var duration: Int,
@@ -41,44 +41,6 @@ data class StudyRecord @JvmOverloads constructor(
             format.timeZone = calendar.timeZone
             return format.format(calendar.time)
         }
-    }
-
-}
-
-/**
- * Studyplusに投稿する学習記録の学習量
- *
- * @since 2.3.0
- */
-class StudyRecordAmount {
-
-    val amountTotal: Int?
-    val startPosition: Int?
-    val endPosition: Int?
-
-    /**
-     * 学習記録の合計学習量
-     *
-     * @param amountTotal 合計学習量
-     * @since 2.3.0
-     */
-    constructor(amountTotal: Int) {
-        this.amountTotal = amountTotal
-        this.startPosition = null
-        this.endPosition = null
-    }
-
-    /**
-     * 学習記録の学習範囲
-     *
-     * @param startPosition 学習量の起点
-     * @param endPosition   学習量の終点
-     * @since 2.3.0
-     */
-    constructor(startPosition: Int, endPosition: Int) {
-        this.amountTotal = null
-        this.startPosition = startPosition
-        this.endPosition = endPosition
     }
 
 }

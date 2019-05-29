@@ -1,7 +1,8 @@
 package jp.studyplus.android.sdk
 
 import jp.studyplus.android.sdk.record.StudyRecord
-import jp.studyplus.android.sdk.record.StudyRecordAmount
+import jp.studyplus.android.sdk.record.StudyRecordAmountRange
+import jp.studyplus.android.sdk.record.StudyRecordAmountTotal
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.util.*
@@ -24,7 +25,7 @@ class StudyRecordUnitTest {
             duration = 2 * 60,
             recordedTime = Calendar.getInstance().apply { set(2019, 5, 1, 1, 2, 3) },
             comment = "perfect!",
-            amount = StudyRecordAmount(30)
+            amount = StudyRecordAmountTotal(30)
         )
 
         assertEquals(
@@ -39,7 +40,7 @@ class StudyRecordUnitTest {
             duration = 2 * 60,
             recordedTime = Calendar.getInstance().apply { set(2019, 5, 1, 1, 2, 3) },
             comment = "perfect!",
-            amount = StudyRecordAmount(5, 12)
+            amount = StudyRecordAmountRange(5, 12)
         )
 
         assertEquals(

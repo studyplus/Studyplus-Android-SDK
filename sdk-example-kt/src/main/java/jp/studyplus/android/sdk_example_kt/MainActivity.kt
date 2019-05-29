@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import jp.studyplus.android.sdk.Studyplus
 import jp.studyplus.android.sdk.record.StudyRecord
-import jp.studyplus.android.sdk.record.StudyRecordAmount
+import jp.studyplus.android.sdk.record.StudyRecordAmountTotal
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 val record = StudyRecord(
                     duration = 2 * 60,
                     comment = "勉強した！！！",
-                    amount = StudyRecordAmount(30)
+                    amount = StudyRecordAmountTotal(30)
                 )
                 Studyplus.instance.postRecord(this@MainActivity, record,
                     object : Studyplus.Companion.OnPostRecordListener {
