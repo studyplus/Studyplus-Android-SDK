@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                     Studyplus.instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
                 } catch (e: ActivityNotFoundException) {
                     e.printStackTrace()
-                    Toast.makeText(context, "Need for Studyplus 2.14.0+", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Need for Studyplus 5.+", Toast.LENGTH_LONG).show()
                 }
             }
         }
