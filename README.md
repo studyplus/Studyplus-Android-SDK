@@ -1,42 +1,38 @@
 # Studyplus-Android-SDK-V2
 
-[![CircleCI](https://circleci.com/gh/studyplus/Studyplus-Android-SDK-V2/tree/master.svg?style=svg)](https://circleci.com/gh/studyplus/Studyplus-Android-SDK-V2/tree/master) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/jp.studyplus.android.sdk/studyplus-android-sdk2/badge.svg)](https://maven-badges.herokuapp.com/maven-central/jp.studyplus.android.sdk/studyplus-android-sdk2)
+[![CircleCI](https://circleci.com/gh/studyplus/Studyplus-Android-SDK-V2/tree/master.svg?style=svg)](https://circleci.com/gh/studyplus/Studyplus-Android-SDK-V2/tree/master) [![](https://jitpack.io/v/studyplus/Studyplus-Android-SDK-V2.svg)](https://jitpack.io/#studyplus/Studyplus-Android-SDK-V2)
 
 ## Requirements
-- Android 4.1+
-- [Studyplus App 2.14+](https://play.google.com/store/apps/details?id=jp.studyplus.android.app)
 
+- Android 5+
+- [Studyplus App 5.0.+](https://play.google.com/store/apps/details?id=jp.studyplus.android.app)
 
 ## Import in your Project
 
 ### Gradle file (app)
 
-```
-repositories {
-    mavenCentral()
+Add it in your root build.gradle at the end of repositories:
+
+```groovy
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+    }
 }
-dependencies {
-    implementation 'jp.studyplus.android.sdk:studyplus-android-sdk2:2.2.1'
-}
 ```
 
-### Maven
-
+```groovy
+    dependencies {
+        implementation 'com.github.studyplus:Studyplus-Android-SDK-V2:2.5.0'
+    }
 ```
-<dependency>
-  <groupId>jp.studyplus.android.sdk</groupId>
-  <artifactId>studyplus-android-sdk2</artifactId>
-  <version>2.2.1</version>
-</dependency>
-```
-
-or download the latest JAR [via Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cstudyplus)
 
 ## Usage
 
 ### Setup
 
-```
+```kotlin
 Studyplus.instance.setup("consumer_key", "consumer_secret")
 ```
 
@@ -44,18 +40,18 @@ Studyplus.instance.setup("consumer_key", "consumer_secret")
 
 Open an Activity to connect with Studyplus.
 
-```
+```kotlin
 try {
     Studyplus.instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
 } catch (e: ActivityNotFoundException) {
     e.printStackTrace()
-    Toast.makeText(context, "Need for Studyplus 2.14.0+", Toast.LENGTH_LONG).show()
+    Toast.makeText(context, "Need for Studyplus 5.0.0+", Toast.LENGTH_LONG).show()
 }
 ```
 
 Then save its result.
 
-```
+```kotlin
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     when (requestCode) {
         REQUEST_CODE_AUTH -> {
@@ -72,7 +68,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 
 Create a record and post.
 
-```
+```kotlin
 val record = StudyRecord(
     duration = 2 * 60,
     amount = StudyRecordAmountTotal(30),
@@ -94,6 +90,7 @@ Studyplus.instance.postRecord(this@MainActivity, record,
 ```
 
 ### More
+
 - See also [actual examples with Kotlin](https://github.com/studyplus/Studyplus-Android-SDK-V2/blob/master/sdk-example-kt/src/main/java/jp/studyplus/android/sdk_example_kt/MainActivity.kt).
 - See also [actual examples with Java](https://github.com/studyplus/Studyplus-Android-SDK-V2/blob/master/sdk-example-java/src/main/java/jp/studyplus/android/sdk_example_java/MainActivity.java).
 
