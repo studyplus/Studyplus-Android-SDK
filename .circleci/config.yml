@@ -10,24 +10,24 @@ commands:
   setup_android:
     steps:
       - restore_cache:
-          key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk2/build.gradle" }}
+          key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk/build.gradle" }}
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk2/build.gradle" }}
+          key: v1-gradle-cache-{{ checksum "build.gradle" }}-{{ checksum  "studyplus-android-sdk/build.gradle" }}
   unit_test:
     steps:
       - run:
           name: Run Tests
-          command: ./gradlew studyplus-android-sdk2:lint studyplus-android-sdk2:test
+          command: ./gradlew studyplus-android-sdk:lint studyplus-android-sdk:test
       - store_artifacts:
-          path: studyplus-android-sdk2/build/reports
+          path: studyplus-android-sdk/build/reports
           destination: reports
       - store_test_results:
-          path: studyplus-android-sdk2/build/test-results
+          path: studyplus-android-sdk/build/test-results
 
   setup_bundle:
     steps:
