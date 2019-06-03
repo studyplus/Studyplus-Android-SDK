@@ -36,7 +36,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
 
-    implementation 'com.github.studyplus:Studyplus-Android-SDK-V2:2.5.0'
+    implementation 'com.github.studyplus:Studyplus-Android-SDK:2.5.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

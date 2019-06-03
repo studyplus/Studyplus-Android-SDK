@@ -1,6 +1,6 @@
-# Studyplus-Android-SDK-V2
+# Studyplus-Android-SDK
 
-[![CircleCI](https://circleci.com/gh/studyplus/Studyplus-Android-SDK-V2/tree/master.svg?style=svg)](https://circleci.com/gh/studyplus/Studyplus-Android-SDK-V2/tree/master) [![](https://jitpack.io/v/studyplus/Studyplus-Android-SDK-V2.svg)](https://jitpack.io/#studyplus/Studyplus-Android-SDK-V2)
+[![CircleCI](https://circleci.com/gh/studyplus/Studyplus-Android-SDK/tree/master.svg?style=svg)](https://circleci.com/gh/studyplus/Studyplus-Android-SDK/tree/master) [![](https://jitpack.io/v/studyplus/Studyplus-Android-SDK.svg)](https://jitpack.io/#studyplus/Studyplus-Android-SDK)
 
 ## Requirements
 
@@ -24,7 +24,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```groovy
     dependencies {
-        implementation 'com.github.studyplus:Studyplus-Android-SDK-V2:2.5.0'
+        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.5.0'
     }
 ```
 
@@ -91,8 +91,8 @@ Studyplus.instance.postRecord(this@MainActivity, record,
 
 ### More
 
-- See also [actual examples with Kotlin](https://github.com/studyplus/Studyplus-Android-SDK-V2/blob/master/sdk-example-kt/src/main/java/jp/studyplus/android/sdk_example_kt/MainActivity.kt).
-- See also [actual examples with Java](https://github.com/studyplus/Studyplus-Android-SDK-V2/blob/master/sdk-example-java/src/main/java/jp/studyplus/android/sdk_example_java/MainActivity.java).
+- See also [actual examples with Kotlin](https://github.com/studyplus/Studyplus-Android-SDK/blob/master/sdk-example-kt/src/main/java/jp/studyplus/android/sdk_example_kt/MainActivity.kt).
+- See also [actual examples with Java](https://github.com/studyplus/Studyplus-Android-SDK/blob/master/sdk-example-java/src/main/java/jp/studyplus/android/sdk_example_java/MainActivity.java).
 
 ### License
 
