@@ -24,7 +24,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```groovy
     dependencies {
-        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.5.2'
+        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.6.0'
     }
 ```
 
