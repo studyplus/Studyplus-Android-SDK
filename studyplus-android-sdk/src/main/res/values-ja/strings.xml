@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="google_play_dialog_title">連携エラー</string>
+    <string name="google_play_dialog_message">スタディプラスがインストールされていません。Google Play Storeへ移動しますか？</string>
+    <string name="google_play_dialog_text_store">ストアへ移動</string>
+    <string name="google_play_dialog_text_cancel">キャンセル</string>
+</resources>

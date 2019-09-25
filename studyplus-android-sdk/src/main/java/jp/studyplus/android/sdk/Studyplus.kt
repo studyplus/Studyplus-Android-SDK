@@ -1,9 +1,9 @@
 package jp.studyplus.android.sdk
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import jp.studyplus.android.sdk.internal.api.ApiClient
 import jp.studyplus.android.sdk.internal.api.CertificationStore
 import jp.studyplus.android.sdk.internal.auth.AuthTransit
@@ -39,10 +39,8 @@ class Studyplus private constructor() {
      *
      * @since 2.0.0
      */
-    fun startAuth(activity: Activity, requestCode: Int) {
-        if (consumerKey == null || consumerSecret == null) {
-            throw IllegalStateException("Please call setup method before this method call.")
-        }
+    fun startAuth(activity: AppCompatActivity, requestCode: Int) {
+        check(!(consumerKey == null || consumerSecret == null)) { "Please call setup method before this method call." }
 
         AuthTransit(consumerKey!!, consumerSecret!!).start(activity, requestCode)
     }
@@ -67,9 +65,7 @@ class Studyplus private constructor() {
      * @since 2.0.0
      */
     fun postRecord(context: Context, studyRecord: StudyRecord, listener: OnPostRecordListener?) {
-        if (!isAuthenticated(context)) {
-            throw IllegalStateException("Please check your application's authentication before this method call.")
-        }
+        check(isAuthenticated(context)) { "Please check your application's authentication before this method call." }
 
         runBlocking {
             try {

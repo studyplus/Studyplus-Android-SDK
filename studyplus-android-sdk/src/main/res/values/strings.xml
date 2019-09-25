@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_custom_scheme">studyplus://auth/external/start</string>
+    <string name="app_custom_scheme" translatable="false">studyplus://auth/external/start</string>
+    <string name="google_play_dialog_title">App link error</string>
+    <string name="google_play_dialog_message">Studyplus app is not installed. Open the Play Store app.</string>
+    <string name="google_play_dialog_text_store">Open</string>
+    <string name="google_play_dialog_text_cancel">Cancel</string>
 </resources>
