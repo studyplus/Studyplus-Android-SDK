@@ -1,3 +1,4 @@
 <resources>
     <string name="app_custom_scheme" translatable="false">studyplus://auth/external/start</string>
+    <string name="app_package_name" translatable="false">jp.studyplus.android.app</string>
 </resources>

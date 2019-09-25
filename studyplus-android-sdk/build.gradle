@@ -7,8 +7,6 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
 
-        consumerProguardFiles 'lib-proguard-rules.txt'
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,7 +45,7 @@ dependencies {
     implementation "androidx.annotation:annotation:$versions.annotation"
     implementation "androidx.core:core-ktx:$versions.core_ktx"
 
-    def okhttp = "3.14.2"
+    def okhttp = "4.2.0"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
 
     testImplementation 'junit:junit:4.12'

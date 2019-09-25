@@ -45,6 +45,7 @@ constructor(
 
     private fun isInstalledStudyplus(context: Context): Boolean {
         val packages = context.packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
-        return packages.any { it.packageName == "jp.studyplus.android.app" }
+        val appName = context.getString(R.string.app_package_name)
+        return packages.any { it.packageName == appName }
     }
 }
