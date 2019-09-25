@@ -1,6 +1,6 @@
 # Studyplus-Android-SDK
 
-[![CircleCI](https://circleci.com/gh/studyplus/Studyplus-Android-SDK/tree/master.svg?style=svg)](https://circleci.com/gh/studyplus/Studyplus-Android-SDK/tree/master) [![](https://jitpack.io/v/studyplus/Studyplus-Android-SDK.svg)](https://jitpack.io/#studyplus/Studyplus-Android-SDK)
+[![](https://jitpack.io/v/studyplus/Studyplus-Android-SDK.svg)](https://jitpack.io/#studyplus/Studyplus-Android-SDK)
 
 ## Requirements
 
