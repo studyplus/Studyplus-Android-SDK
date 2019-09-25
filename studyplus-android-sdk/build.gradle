@@ -44,7 +44,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_cotoutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_cotoutines_version"
 
-    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation "androidx.annotation:annotation:$versions.annotation"
+    implementation "androidx.core:core-ktx:$versions.core_ktx"
 
     def okhttp = "3.14.2"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"

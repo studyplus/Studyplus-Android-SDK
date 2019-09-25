@@ -9,6 +9,8 @@ buildscript {
             'compileSdk'      : 28,
             'minSdk'          : 21,
             'targetSdk'       : 28,
+            'annotation'      : '1.1.0',
+            'core_ktx'        : '1.1.0',
             'appcompat'       : '1.1.0',
             'constraintLayout': '1.1.3'
     ]
