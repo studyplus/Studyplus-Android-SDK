@@ -24,7 +24,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```groovy
     dependencies {
-        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.5.1'
+        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.5.2'
     }
 ```
 
@@ -41,12 +41,7 @@ Studyplus.instance.setup("consumer_key", "consumer_secret")
 Open an Activity to connect with Studyplus.
 
 ```kotlin
-try {
-    Studyplus.instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
-} catch (e: ActivityNotFoundException) {
-    e.printStackTrace()
-    Toast.makeText(context, "Need for Studyplus 5.0.0+", Toast.LENGTH_LONG).show()
-}
+Studyplus.instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
 ```
 
 Then save its result.

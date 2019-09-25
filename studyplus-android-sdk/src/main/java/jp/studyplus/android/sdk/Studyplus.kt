@@ -40,9 +40,7 @@ class Studyplus private constructor() {
      * @since 2.0.0
      */
     fun startAuth(activity: Activity, requestCode: Int) {
-        if (consumerKey == null || consumerSecret == null) {
-            throw IllegalStateException("Please call setup method before this method call.")
-        }
+        check(consumerKey != null && consumerSecret != null) { "Please call setup method before this method call." }
 
         AuthTransit(consumerKey!!, consumerSecret!!).start(activity, requestCode)
     }
@@ -67,9 +65,7 @@ class Studyplus private constructor() {
      * @since 2.0.0
      */
     fun postRecord(context: Context, studyRecord: StudyRecord, listener: OnPostRecordListener?) {
-        if (!isAuthenticated(context)) {
-            throw IllegalStateException("Please check your application's authentication before this method call.")
-        }
+        check(isAuthenticated(context)) { "Please check your application's authentication before this method call." }
 
         runBlocking {
             try {
