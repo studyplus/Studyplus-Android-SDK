@@ -40,7 +40,7 @@ class Studyplus private constructor() {
      * @since 2.0.0
      */
     fun startAuth(activity: Activity, requestCode: Int) {
-        check(!(consumerKey == null || consumerSecret == null)) { "Please call setup method before this method call." }
+        check(consumerKey != null && consumerSecret != null) { "Please call setup method before this method call." }
 
         AuthTransit(consumerKey!!, consumerSecret!!).start(activity, requestCode)
     }
