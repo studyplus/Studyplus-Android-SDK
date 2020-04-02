@@ -60,6 +60,15 @@ class Studyplus private constructor() {
     }
 
     /**
+     * Studyplus連携認証解除
+     *
+     * @since 2.6.1
+     */
+    fun cancelAuth(context: Context) {
+        CertificationStore.remove(context)
+    }
+
+    /**
      * Studyplusとの認証情報を利用して学習記録をStudyplusへ投稿
      *
      * @since 2.0.0

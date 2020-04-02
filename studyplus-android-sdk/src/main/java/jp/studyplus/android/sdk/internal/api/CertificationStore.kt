@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
+import android.os.Build
+import androidx.core.content.edit
 import jp.studyplus.android.sdk.BuildConfig
 
 internal class CertificationStore
@@ -17,10 +19,20 @@ private constructor(private val preferences: SharedPreferences) {
 
         private const val RESULT_CODE_AUTHENTICATED = "AUTHENTICATED"
 
+        private val prefName = "Certification:" + Uri.parse(BuildConfig.API_ENDPOINT).host
         fun create(context: Context): CertificationStore {
-            val prefName = "Certification:" + Uri.parse(BuildConfig.API_ENDPOINT).host
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             return CertificationStore(pref)
+        }
+
+        fun remove(context: Context) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                context.deleteSharedPreferences(prefName)
+            } else {
+                context.getSharedPreferences(prefName, Context.MODE_PRIVATE).edit {
+                    clear()
+                }
+            }
         }
     }
 
