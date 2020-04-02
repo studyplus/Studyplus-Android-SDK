@@ -50,8 +50,8 @@ dependencies {
     def okhttp = "4.4.1"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.robolectric:robolectric:4.0.2'
+    testImplementation "junit:junit:$versions.junit"
+    testImplementation "org.robolectric:robolectric:$versions.robolectric"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp"
 }
