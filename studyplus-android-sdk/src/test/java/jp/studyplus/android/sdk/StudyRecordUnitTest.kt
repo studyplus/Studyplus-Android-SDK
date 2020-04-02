@@ -1,5 +1,6 @@
 package jp.studyplus.android.sdk
 
+import android.os.Build
 import jp.studyplus.android.sdk.record.StudyRecord
 import jp.studyplus.android.sdk.record.StudyRecordAmountRange
 import jp.studyplus.android.sdk.record.StudyRecordAmountTotal
@@ -7,9 +8,11 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import java.util.*
 
 @RunWith(RobolectricTestRunner::class)
+@Config(sdk = [Build.VERSION_CODES.P])
 class StudyRecordUnitTest {
 
     @Test

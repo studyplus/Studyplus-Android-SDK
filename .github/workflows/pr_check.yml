@@ -76,4 +76,3 @@ jobs:
 
       - name: Run unit test
         run: ./gradlew studyplus-android-sdk:test
-
