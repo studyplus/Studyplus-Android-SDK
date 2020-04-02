@@ -3,12 +3,15 @@ package jp.studyplus.android.sdk
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import jp.studyplus.android.sdk.internal.api.ApiClient
 import jp.studyplus.android.sdk.internal.api.CertificationStore
+import jp.studyplus.android.sdk.internal.api.PostCallback
 import jp.studyplus.android.sdk.internal.auth.AuthTransit
 import jp.studyplus.android.sdk.record.StudyRecord
-import kotlinx.coroutines.runBlocking
+import java.io.IOException
 
 class Studyplus private constructor() {
 
@@ -32,7 +35,7 @@ class Studyplus private constructor() {
      * @since 2.0.0
      */
     fun isAuthenticated(context: Context): Boolean =
-            CertificationStore.create(context.applicationContext).isAuthenticated()
+        CertificationStore.create(context.applicationContext).isAuthenticated()
 
     /**
      * [setup]で設定されたConsumerKey, ConsumerSecretKeyによるStudyplus連携認証
@@ -76,15 +79,23 @@ class Studyplus private constructor() {
     fun postRecord(context: Context, studyRecord: StudyRecord, listener: OnPostRecordListener?) {
         check(isAuthenticated(context)) { "Please check your application's authentication before this method call." }
 
-        runBlocking {
-            try {
-                val deferred = ApiClient.postStudyRecords(context, studyRecord)
-                val recordId = deferred.await()
-                listener?.onResult(success = true, recordId = recordId)
-            } catch (t: Throwable) {
-                listener?.onResult(success = false, throwable = t)
+        ApiClient.postStudyRecords(context, studyRecord, object : PostCallback {
+            override fun onSuccess(recordId: Long?) {
+                runOnUiThread {
+                    listener?.onResult(success = true, recordId = recordId)
+                }
             }
-        }
+
+            override fun onFailure(e: IOException) {
+                runOnUiThread {
+                    listener?.onResult(success = false, throwable = e)
+                }
+            }
+        })
+    }
+
+    private fun runOnUiThread(task: () -> Unit) {
+        Handler(Looper.getMainLooper()).post { task() }
     }
 
     companion object {

@@ -4,6 +4,6 @@ import android.content.Context
 import jp.studyplus.android.sdk.record.StudyRecord
 
 internal object MockApiClient {
-    fun postStudyRecords(context: Context?, studyRecord: StudyRecord) =
-            MockApiService(ApiManager.client).post(studyRecord.toJson())
+    fun postStudyRecords(context: Context?, studyRecord: StudyRecord, callback: PostCallback) =
+            MockApiService(ApiManager.client).post(studyRecord.toJson(), callback)
 }
