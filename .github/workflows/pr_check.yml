@@ -50,7 +50,7 @@ jobs:
       - name: Run danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: danger
+        run: bundle exec danger
 
   unit_test:
     runs-on: ubuntu-latest
