@@ -36,6 +36,17 @@
             android:layout_height="24dp" />
 
         <Button
+            android:id="@+id/cancel_auth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/cancel_auth_button" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+
+        <Button
             android:id="@+id/post_study_record"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
