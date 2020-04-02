@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
-import androidx.core.content.edit
 import jp.studyplus.android.sdk.BuildConfig
 
 internal class CertificationStore
@@ -29,8 +28,9 @@ private constructor(private val preferences: SharedPreferences) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 context.deleteSharedPreferences(prefName)
             } else {
-                context.getSharedPreferences(prefName, Context.MODE_PRIVATE).edit {
-                    clear()
+               context.getSharedPreferences(prefName, Context.MODE_PRIVATE).edit().let {
+                   it.clear()
+                   it.apply()
                 }
             }
         }
