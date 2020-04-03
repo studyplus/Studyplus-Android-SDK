@@ -1,6 +1,7 @@
 # Studyplus-Android-SDK
 
 [![](https://jitpack.io/v/studyplus/Studyplus-Android-SDK.svg)](https://jitpack.io/#studyplus/Studyplus-Android-SDK)
+![Unit test](https://github.com/studyplus/Studyplus-Android-SDK/workflows/Unit%20test/badge.svg)
 
 ## Requirements
 
@@ -24,7 +25,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```groovy
     dependencies {
-        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.6.0'
+        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.6.2'
     }
 ```
 
@@ -57,6 +58,12 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
         }
     }
 }
+```
+
+### Unauth
+
+```kotlin
+Studyplus.instance.cancelAuth(this@MainActivity)
 ```
 
 ### Post a record to Studyplus
@@ -94,7 +101,7 @@ Studyplus.instance.postRecord(this@MainActivity, record,
 ```text
 MIT License
 
-Copyright (c) 2019 Studyplus, Inc.
+Copyright (c) 2020 Studyplus, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
