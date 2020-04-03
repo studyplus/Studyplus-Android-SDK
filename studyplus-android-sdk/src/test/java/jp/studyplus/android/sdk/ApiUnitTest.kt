@@ -1,15 +1,18 @@
 package jp.studyplus.android.sdk
 
+import android.os.Build
 import jp.studyplus.android.sdk.internal.api.MockApiClient
 import jp.studyplus.android.sdk.record.StudyRecord
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 @RunWith(RobolectricTestRunner::class)
+@Config(sdk = [Build.VERSION_CODES.P])
 class ApiUnitTest {
 
     @Test

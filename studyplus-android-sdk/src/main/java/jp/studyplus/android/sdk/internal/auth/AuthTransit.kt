@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.core.net.toUri
 import jp.studyplus.android.sdk.R
 
 internal class AuthTransit
@@ -21,7 +20,7 @@ constructor(
         private const val EXTRA_CONSUMER_KEY = "consumer_key"
         private const val EXTRA_CONSUMER_SECRET = "consumer_secret"
 
-        private val URI_STORE = "market://details?id=jp.studyplus.android.app".toUri()
+        private val URI_STORE = Uri.parse("market://details?id=jp.studyplus.android.app")
         private val INTENT_STORE = Intent(Intent.ACTION_VIEW, URI_STORE)
     }
 

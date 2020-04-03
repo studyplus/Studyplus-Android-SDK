@@ -38,6 +38,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        findViewById<View>(R.id.cancel_auth)?.apply {
+            setOnClickListener {
+                Studyplus.instance.cancelAuth(this@MainActivity)
+                updateAuthText()
+            }
+        }
+
         findViewById<View>(R.id.post_study_record)?.apply {
             setOnClickListener {
                 val record = StudyRecord(
@@ -64,7 +71,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        updateAuthText()
+    }
 
+    private fun updateAuthText() {
         val authStatusText = findViewById<TextView>(R.id.auth_status)
         authStatusText.text = when (Studyplus.instance.isAuthenticated(this)) {
             true -> getString(R.string.status_authenticated)
