@@ -1,4 +1,4 @@
-name: CI
+name: PR check
 
 on: [pull_request]
 
@@ -72,4 +72,5 @@ jobs:
           ./gradlew androidDependencies --no-daemon
 
       - name: Run unit test
-        run: ./gradlew studyplus-android-sdk:test
+        run: |
+          ./gradlew studyplus-android-sdk:test --no-daemon

@@ -1,0 +1,33 @@
+name: Unit test
+
+on: 
+  push:
+    branches: 
+      - master
+
+jobs:
+  unit_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+
+      - name: Gradle dist Cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-dist-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}
+      - name: Gradle dependencies Cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-v1-gradle-${{ hashFiles('**/build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-v1-gradle-
+      - name: Download Dependencies
+        run: |
+          ./gradlew androidDependencies --no-daemon
+
+      - name: Run unit test
+        run: |
+          ./gradlew studyplus-android-sdk:test --no-daemon
