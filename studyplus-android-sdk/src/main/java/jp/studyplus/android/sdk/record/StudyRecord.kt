@@ -2,7 +2,9 @@ package jp.studyplus.android.sdk.record
 
 import androidx.annotation.IntRange
 import org.json.JSONObject
-import java.text.SimpleDateFormat
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
@@ -20,14 +22,27 @@ data class StudyRecord @JvmOverloads constructor(
     val duration: Int,
     val amount: StudyRecordAmount? = null,
     val comment: String? = null,
-    val recordedTime: Calendar = Calendar.getInstance(DATE_TIME_ZONE, DATE_LOCALE)
+    val recordedTime: OffsetDateTime = OffsetDateTime.now()
 ) {
+
+    constructor(
+        @IntRange(from = 0L, to = DURATION_RANGE_MAX_24H)
+        duration: Int,
+        amount: StudyRecordAmount? = null,
+        comment: String? = null,
+        recordedTime: Calendar
+    ) : this(
+        duration = duration,
+        amount = amount,
+        comment = comment,
+        recordedTime = recordedTime.toInstant().atOffset(ZoneOffset.UTC)
+    )
 
     internal fun toJson(): String = if (duration > DURATION_RANGE_MAX_24H) {
         throw IllegalArgumentException("duration must be 24 hours or less")
     } else {
         JSONObject().apply {
-            put("recorded_at", formatTime(recordedTime))
+            put("record_datetime", recordedTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
             put("duration", duration)
             comment?.let { put("comment", it) }
             amount?.let { studyRecordAmount ->
@@ -40,16 +55,6 @@ data class StudyRecord @JvmOverloads constructor(
 
     companion object {
         private const val DURATION_RANGE_MAX_24H = 24L * 60L * 60L
-
-        private const val DATE_FORMAT = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
-        private val DATE_LOCALE: Locale = Locale.US
-        private val DATE_TIME_ZONE: TimeZone = TimeZone.getTimeZone("UTC")
-
-        internal fun formatTime(calendar: Calendar): String {
-            val format = SimpleDateFormat(DATE_FORMAT, DATE_LOCALE)
-            format.timeZone = calendar.timeZone
-            return format.format(calendar.time)
-        }
     }
 
 }
