@@ -42,7 +42,7 @@ dependencies {
 
     implementation "androidx.annotation:annotation:$versions.annotation"
 
-    def okhttp = "4.4.1"
+    def okhttp = "4.7.2"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
 
     testImplementation "junit:junit:$versions.junit"
