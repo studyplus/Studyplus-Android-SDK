@@ -94,7 +94,6 @@ Studyplus.instance.postRecord(this@MainActivity, record,
 ### More
 
 - See also [actual examples with Kotlin](https://github.com/studyplus/Studyplus-Android-SDK/blob/master/sdk-example-kt/src/main/java/jp/studyplus/android/sdk_example_kt/MainActivity.kt).
-- See also [actual examples with Java](https://github.com/studyplus/Studyplus-Android-SDK/blob/master/sdk-example-java/src/main/java/jp/studyplus/android/sdk_example_java/MainActivity.java).
 
 ### License
 

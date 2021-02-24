@@ -1,1 +1,1 @@
-include ':studyplus-android-sdk', ':sdk-example-kt', ':sdk-example-java'
+include ':studyplus-android-sdk', ':sdk-example-kt'
