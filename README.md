@@ -25,7 +25,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```groovy
     dependencies {
-        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.6.2'
+        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.7.0'
     }
 ```
 
@@ -74,7 +74,7 @@ Create a record and post.
 val record = StudyRecord(
     duration = 2 * 60,
     amount = StudyRecordAmountTotal(30),
-    comment = "勉強した！！！"
+    comment = "勉強した！！！",
 )
 Studyplus.instance.postRecord(this@MainActivity, record,
         object : Studyplus.Companion.OnPostRecordListener {
@@ -93,7 +93,7 @@ Studyplus.instance.postRecord(this@MainActivity, record,
 
 ### More
 
-- See also [actual examples with Kotlin](https://github.com/studyplus/Studyplus-Android-SDK/blob/master/sdk-example-kt/src/main/java/jp/studyplus/android/sdk_example_kt/MainActivity.kt).
+- See also [Sample Project](https://github.com/studyplus/Studyplus-Android-SDK/blob/master/sdk-example-kt/src/main/java/jp/studyplus/android/sdk_example_kt/MainActivity.kt).
 
 ### License
 
