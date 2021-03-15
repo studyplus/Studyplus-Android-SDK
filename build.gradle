@@ -2,12 +2,12 @@
 
 buildscript {
     ext {
-        kotlin_version = '1.4.30'
+        kotlin_version = '1.4.31'
     }
     ext.versions = [
-            'compileSdk': 29,
+            'compileSdk': 30,
             'minSdk'    : 21,
-            'targetSdk' : 29,
+            'targetSdk' : 30,
     ]
     repositories {
         google()
