@@ -1,5 +1,7 @@
 package jp.studyplus.android.sdk.internal.api
 
+import jp.studyplus.android.sdk.PostCallback
+import jp.studyplus.android.sdk.internal.createPostBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.mockwebserver.MockResponse

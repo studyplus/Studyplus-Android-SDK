@@ -38,7 +38,7 @@ data class StudyRecord @JvmOverloads constructor(
         recordedTime = recordedTime.toInstant().atOffset(ZoneOffset.UTC)
     )
 
-    internal fun toJson(): String = if (duration > DURATION_RANGE_MAX_24H) {
+    internal fun json(): String = if (duration > DURATION_RANGE_MAX_24H) {
         throw IllegalArgumentException("duration must be 24 hours or less")
     } else {
         JSONObject().apply {

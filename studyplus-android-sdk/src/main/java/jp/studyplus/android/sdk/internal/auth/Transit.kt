@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import jp.studyplus.android.sdk.R
 
-internal class AuthTransit
+internal class Transit
 /**
  * @param consumerKey for API
  * @param consumerSecret for API

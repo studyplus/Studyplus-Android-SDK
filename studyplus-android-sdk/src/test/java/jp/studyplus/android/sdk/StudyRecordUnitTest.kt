@@ -26,7 +26,7 @@ class StudyRecordUnitTest {
 
         assertEquals(
             "{\"record_datetime\":\"${studyRecord.recordedTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)}\",\"duration\":120}",
-            studyRecord.toJson()
+            studyRecord.json()
         )
     }
 
@@ -41,7 +41,7 @@ class StudyRecordUnitTest {
 
         assertEquals(
             "{\"record_datetime\":\"$dateStr\",\"duration\":120,\"comment\":\"perfect!\",\"amount\":30}",
-            studyRecord.toJson()
+            studyRecord.json()
         )
     }
 
@@ -56,7 +56,7 @@ class StudyRecordUnitTest {
 
         assertEquals(
             "{\"record_datetime\":\"$dateStr\",\"duration\":120,\"comment\":\"perfect!\",\"start_position\":5,\"end_position\":12}",
-            studyRecord.toJson()
+            studyRecord.json()
         )
     }
 

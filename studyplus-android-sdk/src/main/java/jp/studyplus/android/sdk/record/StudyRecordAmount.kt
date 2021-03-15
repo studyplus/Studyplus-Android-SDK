@@ -29,6 +29,7 @@ data class StudyRecordAmountTotal(override val amountTotal: Int) : StudyRecordAm
  * @param endPosition   学習量の終点
  * @since 2.5.0
  */
-data class StudyRecordAmountRange(override val startPosition: Int, override val endPosition: Int) : StudyRecordAmount {
+data class StudyRecordAmountRange(override val startPosition: Int, override val endPosition: Int) :
+    StudyRecordAmount {
     override val amountTotal: Int? = null
 }
