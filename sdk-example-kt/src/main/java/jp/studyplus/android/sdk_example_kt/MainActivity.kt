@@ -8,7 +8,9 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import jp.studyplus.android.sdk.PostCallback
 import jp.studyplus.android.sdk.Studyplus
+import jp.studyplus.android.sdk.StudyplusError
 import jp.studyplus.android.sdk.record.StudyRecord
 import jp.studyplus.android.sdk.record.StudyRecordAmountTotal
 
@@ -18,19 +20,22 @@ class MainActivity : AppCompatActivity() {
         const val REQUEST_CODE_AUTH = 1
     }
 
+    private val instance by lazy {
+        Studyplus(
+            context = this,
+            consumerKey = getString(R.string.consumer_key),
+            consumerSecret = getString(R.string.consumer_secret),
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Studyplus.instance.setup(
-            getString(R.string.consumer_key),
-            getString(R.string.consumer_secret)
-        )
-
         findViewById<View>(R.id.start_auth)?.apply {
             setOnClickListener {
                 try {
-                    Studyplus.instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
+                    instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
                 } catch (e: ActivityNotFoundException) {
                     e.printStackTrace()
                     Toast.makeText(context, "Need for Studyplus 5.+", Toast.LENGTH_LONG).show()
@@ -40,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.cancel_auth)?.apply {
             setOnClickListener {
-                Studyplus.instance.cancelAuth(this@MainActivity)
+                instance.cancelAuth()
                 updateAuthText()
             }
         }
@@ -52,19 +57,15 @@ class MainActivity : AppCompatActivity() {
                     amount = StudyRecordAmountTotal(30),
                     comment = "勉強した！！！"
                 )
-                Studyplus.instance.postRecord(this@MainActivity, record,
-                    object : Studyplus.Companion.OnPostRecordListener {
-                        override fun onResult(success: Boolean, recordId: Long?, throwable: Throwable?) {
-                            if (success) {
-                                Toast.makeText(context, "Post Study Record!! ($recordId)", Toast.LENGTH_LONG).show()
-                            } else {
-                                throwable?.apply {
-                                    Toast.makeText(context, "error!!", Toast.LENGTH_LONG).show()
-                                    printStackTrace()
-                                }
-                            }
-                        }
-                    })
+                instance.postRecord(record, object : PostCallback {
+                    override fun onSuccess() {
+                        Toast.makeText(context, "Post Study Record!!", Toast.LENGTH_LONG).show()
+                    }
+
+                    override fun onFailure(e: StudyplusError) {
+                        Toast.makeText(context, "error!!", Toast.LENGTH_LONG).show()
+                    }
+                })
             }
         }
     }
@@ -76,18 +77,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateAuthText() {
         val authStatusText = findViewById<TextView>(R.id.auth_status)
-        authStatusText.text = when (Studyplus.instance.isAuthenticated(this)) {
+        authStatusText.text = when (instance.isAuthenticated()) {
             true -> getString(R.string.status_authenticated)
             else -> getString(R.string.status_unauthenticated)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != RESULT_OK || data == null) {
+            Toast.makeText(this, "error!!", Toast.LENGTH_LONG).show()
+            return
+        }
+
         when (requestCode) {
             REQUEST_CODE_AUTH -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    Studyplus.instance.setAuthResult(this, data)
-                    Toast.makeText(this@MainActivity, "Success!!", Toast.LENGTH_LONG).show()
+                    instance.setAuthResult(data)
+                    Toast.makeText(this, "Success!!", Toast.LENGTH_LONG).show()
                 }
             }
         }

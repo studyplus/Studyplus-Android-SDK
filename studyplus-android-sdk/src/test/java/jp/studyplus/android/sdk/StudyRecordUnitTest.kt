@@ -11,22 +11,24 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.P])
 class StudyRecordUnitTest {
 
     private val date = OffsetDateTime.of(2019, 6, 1, 1, 2, 3, 0, ZoneOffset.UTC)
-    private val dateStr = date.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+    private val dateStr = "2019-06-01T01:02:03Z"
 
     @Test
     fun toJsonTest_littleParams() {
-        val studyRecord = StudyRecord(2 * 60)
+        val studyRecord = StudyRecord(
+            duration = 2 * 60,
+            recordedTime = date,
+        )
 
         assertEquals(
-            "{\"record_datetime\":\"${studyRecord.recordedTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)}\",\"duration\":120}",
-            studyRecord.json()
+            """{"record_datetime":"$dateStr","duration":120}""",
+            studyRecord.json
         )
     }
 
@@ -36,12 +38,12 @@ class StudyRecordUnitTest {
             duration = 2 * 60,
             amount = StudyRecordAmountTotal(30),
             comment = "perfect!",
-            recordedTime = date
+            recordedTime = date,
         )
 
         assertEquals(
-            "{\"record_datetime\":\"$dateStr\",\"duration\":120,\"comment\":\"perfect!\",\"amount\":30}",
-            studyRecord.json()
+            """{"record_datetime":"$dateStr","duration":120,"comment":"perfect!","amount":30}""",
+            studyRecord.json
         )
     }
 
@@ -51,12 +53,12 @@ class StudyRecordUnitTest {
             duration = 2 * 60,
             amount = StudyRecordAmountRange(5, 12),
             comment = "perfect!",
-            recordedTime = date
+            recordedTime = date,
         )
 
         assertEquals(
-            "{\"record_datetime\":\"$dateStr\",\"duration\":120,\"comment\":\"perfect!\",\"start_position\":5,\"end_position\":12}",
-            studyRecord.json()
+            """{"record_datetime":"$dateStr","duration":120,"comment":"perfect!","start_position":5,"end_position":12}""",
+            studyRecord.json
         )
     }
 

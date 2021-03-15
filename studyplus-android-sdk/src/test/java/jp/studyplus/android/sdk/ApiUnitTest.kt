@@ -1,15 +1,16 @@
 package jp.studyplus.android.sdk
 
 import android.os.Build
-import jp.studyplus.android.sdk.internal.api.MockApiClient
-import jp.studyplus.android.sdk.internal.api.PostCallback
+import jp.studyplus.android.sdk.internal.api.Repository
+import jp.studyplus.android.sdk.internal.createRequest
+import jp.studyplus.android.sdk.internal.requestBody
 import jp.studyplus.android.sdk.record.StudyRecord
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.MockWebServer
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import java.io.IOException
-import kotlin.test.assertEquals
 import kotlin.test.fail
 
 @RunWith(RobolectricTestRunner::class)
@@ -18,13 +19,24 @@ class ApiUnitTest {
 
     @Test
     fun mockApi() {
+        val server = MockWebServer()
+        server.enqueue(MockResponse())
+        server.start()
+
         val record = StudyRecord(2 * 60)
-        MockApiClient.postStudyRecords(null, record, object : PostCallback {
-            override fun onSuccess(recordId: Long?) {
-                assertEquals(recordId, 9999L)
+        val body = record.requestBody()
+        val request = createRequest(
+            url = server.url("/v1/study_records"),
+            accessToken = "access_token",
+            body = body,
+        )
+
+        Repository().post(request = request, callback = object : PostCallback {
+            override fun onSuccess() {
+                assert(true)
             }
 
-            override fun onFailure(e: IOException) {
+            override fun onFailure(e: StudyplusError) {
                 fail("Failed Network Request")
             }
         })

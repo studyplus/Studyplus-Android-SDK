@@ -38,20 +38,21 @@ data class StudyRecord @JvmOverloads constructor(
         recordedTime = recordedTime.toInstant().atOffset(ZoneOffset.UTC)
     )
 
-    internal fun json(): String = if (duration > DURATION_RANGE_MAX_24H) {
-        throw IllegalArgumentException("duration must be 24 hours or less")
-    } else {
-        JSONObject().apply {
-            put("record_datetime", recordedTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
-            put("duration", duration)
-            comment?.let { put("comment", it) }
-            amount?.let { studyRecordAmount ->
-                studyRecordAmount.amountTotal?.let { put("amount", it) }
-                studyRecordAmount.startPosition?.let { put("start_position", it) }
-                studyRecordAmount.endPosition?.let { put("end_position", it) }
-            }
-        }.toString()
-    }
+    internal val json: String
+        get() = if (duration > DURATION_RANGE_MAX_24H) {
+            throw IllegalArgumentException("duration must be 24 hours or less")
+        } else {
+            JSONObject().apply {
+                put("record_datetime", recordedTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
+                put("duration", duration)
+                comment?.let { put("comment", it) }
+                amount?.let { studyRecordAmount ->
+                    studyRecordAmount.amountTotal?.let { put("amount", it) }
+                    studyRecordAmount.startPosition?.let { put("start_position", it) }
+                    studyRecordAmount.endPosition?.let { put("end_position", it) }
+                }
+            }.toString()
+        }
 
     companion object {
         private const val DURATION_RANGE_MAX_24H = 24L * 60L * 60L
