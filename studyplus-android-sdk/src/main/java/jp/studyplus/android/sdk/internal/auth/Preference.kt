@@ -29,6 +29,10 @@ internal class Preference(context: Context) {
 
         if (code != RESULT_CODE_AUTHENTICATED) {
             // not authenticated
+            Log.e(
+                "StudyplusSDK",
+                "Your app is not authenticated.",
+            )
             return
         }
 
