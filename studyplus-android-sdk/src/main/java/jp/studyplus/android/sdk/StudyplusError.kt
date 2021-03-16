@@ -1,7 +1,7 @@
 package jp.studyplus.android.sdk
 
 sealed class StudyplusError {
-    class IOException(val throwable: Throwable) : StudyplusError()
+    class IOException(val e: java.io.IOException) : StudyplusError()
     object BadRequest : StudyplusError()
     object LoginRequired : StudyplusError()
     object ServerError : StudyplusError()
