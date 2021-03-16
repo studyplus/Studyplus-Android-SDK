@@ -15,26 +15,33 @@
 Add it in your root build.gradle at the end of repositories:
 
 ```groovy
-    allprojects {
-        repositories {
-            ...
-            maven { url 'https://jitpack.io' }
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
     }
 }
 ```
 
 ```groovy
-    dependencies {
-        implementation 'com.github.studyplus:Studyplus-Android-SDK:2.7.0'
-    }
+dependencies {
+    implementation 'com.github.studyplus:Studyplus-Android-SDK:3.0.0'
+}
 ```
 
 ## Usage
 
 ### Setup
 
+If you want to handle StudyplusSDK instance as a singleton, use [Dagger](https://dagger.dev).
+
 ```kotlin
-Studyplus.instance.setup("consumer_key", "consumer_secret")
+private val instance by lazy {
+    Studyplus(
+        context = this,
+        consumerKey = "consumer_key",
+        consumerSecret =  "consumer_secret",
+    )
+}
 ```
 
 ### Authenticate
@@ -42,20 +49,22 @@ Studyplus.instance.setup("consumer_key", "consumer_secret")
 Open an Activity to connect with Studyplus.
 
 ```kotlin
-Studyplus.instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
+instance.startAuth(this@MainActivity, REQUEST_CODE_AUTH)
 ```
 
-Then save its result.
+Then save the result.
 
 ```kotlin
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    when (requestCode) {
-        REQUEST_CODE_AUTH -> {
-            if (resultCode == Activity.RESULT_OK) {
-                Studyplus.instance.setAuthResult(this, data)
-                Toast.makeText(this@MainActivity, "Success!!", Toast.LENGTH_LONG).show()
-            }
-        }
+    super.onActivityResult(requestCode, resultCode, data)
+    if (resultCode != RESULT_OK || data == null) {
+        Toast.makeText(this, "error!!", Toast.LENGTH_LONG).show()
+        return
+    }
+
+    if (requestCode == REQUEST_CODE_AUTH) {
+        instance.setAuthResult(data)
+        Toast.makeText(this, "Success!!", Toast.LENGTH_LONG).show()
     }
 }
 ```
@@ -63,7 +72,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 ### Unauth
 
 ```kotlin
-Studyplus.instance.cancelAuth(this@MainActivity)
+instance.cancelAuth()
 ```
 
 ### Post a record to Studyplus
@@ -76,19 +85,15 @@ val record = StudyRecord(
     amount = StudyRecordAmountTotal(30),
     comment = "勉強した！！！",
 )
-Studyplus.instance.postRecord(this@MainActivity, record,
-        object : Studyplus.Companion.OnPostRecordListener {
-            override fun onResult(success: Boolean, recordId: Long?, throwable: Throwable?) {
-                if (success) {
-                    Toast.makeText(context, "Post Study Record!! ($recordId)", Toast.LENGTH_LONG).show()
-                } else {
-                    throwable?.apply {
-                        Toast.makeText(context, "error!!", Toast.LENGTH_LONG).show()
-                        printStackTrace()
-                    }
-                }
-            }
-        })
+instance.postRecord(record, object : PostCallback {
+    override fun onSuccess() {
+        Toast.makeText(context, "Post Study Record!!", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onFailure(e: StudyplusError) {
+        Toast.makeText(context, "error!!", Toast.LENGTH_LONG).show()
+    }
+})
 ```
 
 ### More
