@@ -37,7 +37,7 @@ If you want to handle StudyplusSDK instance as a singleton, use [Dagger](https:/
 ```kotlin
 private val instance by lazy {
     Studyplus(
-        context = this@MainActivity,
+        context = this,
         consumerKey = "consumer_key",
         consumerSecret =  "consumer_secret",
     )
@@ -56,13 +56,15 @@ Then save the result.
 
 ```kotlin
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
     if (resultCode != RESULT_OK || data == null) {
+        Toast.makeText(this, "error!!", Toast.LENGTH_LONG).show()
         return
     }
 
     if (requestCode == REQUEST_CODE_AUTH) {
         instance.setAuthResult(data)
-        Toast.makeText(this@MainActivity, "Success!!", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Success!!", Toast.LENGTH_LONG).show()
     }
 }
 ```
