@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'jp.studyplus.android.sdk'
+
     compileSdkVersion versions.compileSdk
     defaultConfig {
         minSdkVersion versions.minSdk
@@ -25,15 +27,16 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
-    }
 
     compileOptions {
         coreLibraryDesugaringEnabled true
 
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
+    }
+
+    lint {
+        abortOnError false
     }
 }
 

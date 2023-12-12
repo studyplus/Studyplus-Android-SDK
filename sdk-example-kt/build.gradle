@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'jp.studyplus.android.sdk_example_kt'
+
     compileSdkVersion versions.compileSdk
 
     buildFeatures {
