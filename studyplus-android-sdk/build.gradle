@@ -5,6 +5,11 @@ android {
     namespace 'jp.studyplus.android.sdk'
 
     compileSdkVersion versions.compileSdk
+
+    buildFeatures {
+        buildConfig true
+    }
+
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
