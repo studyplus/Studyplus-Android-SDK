@@ -2,7 +2,14 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'jp.studyplus.android.sdk'
+
     compileSdkVersion versions.compileSdk
+
+    buildFeatures {
+        buildConfig true
+    }
+
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
@@ -25,9 +32,6 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
-    }
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -35,18 +39,26 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    lint {
+        abortOnError false
+    }
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 
-    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.annotation:annotation:1.7.0"
 
-    implementation platform("com.squareup.okhttp3:okhttp-bom:4.9.1")
+    implementation platform("com.squareup.okhttp3:okhttp-bom:4.12.0")
     implementation "com.squareup.okhttp3:okhttp"
 
     testImplementation "junit:junit:4.13.2"
-    testImplementation "org.robolectric:robolectric:4.5.1"
+    testImplementation 'org.robolectric:robolectric:4.11.1'
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testImplementation "com.squareup.okhttp3:mockwebserver"
 }

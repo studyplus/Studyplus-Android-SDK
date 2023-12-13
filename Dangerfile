@@ -28,7 +28,7 @@ warn("A pull request must have some assignees") if github.pr_json["assignee"].ni
 # Android Lint
 #
 ####
-android_lint.gradle_task = "studyplus-android-sdk:lint"
-android_lint.report_file = "studyplus-android-sdk/build/reports/lint-results.xml"
+android_lint.gradle_task = "studyplus-android-sdk:lintDebug"
+android_lint.report_file = "studyplus-android-sdk/build/reports/lint-results-debug.xml"
 android_lint.filtering = true
 android_lint.lint(inline_mode: true)

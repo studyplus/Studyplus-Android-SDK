@@ -5,8 +5,8 @@
 
 ## Requirements
 
-- Android 5+
-- [Studyplus App 5.0.+](https://play.google.com/store/apps/details?id=jp.studyplus.android.app)
+- Android 6+
+- [Studyplus App 7.0.+](https://play.google.com/store/apps/details?id=jp.studyplus.android.app)
 
 ## Import in your Project
 
@@ -24,7 +24,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.studyplus:Studyplus-Android-SDK:3.0.0'
+    implementation 'com.github.studyplus:Studyplus-Android-SDK:4.0.0'
 }
 ```
 
