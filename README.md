@@ -23,8 +23,16 @@ allprojects {
 ```
 
 ```groovy
+android {
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+    }
+}
+
 dependencies {
-    implementation 'com.github.studyplus:Studyplus-Android-SDK:4.0.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+
+    implementation 'com.github.studyplus:Studyplus-Android-SDK:4.0.2'
 }
 ```
 
