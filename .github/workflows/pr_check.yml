@@ -20,7 +20,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - uses: actions/cache@8492260343ad570701412c2f464a5877dc76bace # v2
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
             ~/.gradle/caches
@@ -50,7 +50,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - uses: actions/cache@8492260343ad570701412c2f464a5877dc76bace # v2
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
             ~/.gradle/caches
