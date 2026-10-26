@@ -4,10 +4,12 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: "daily"
       time: "10:00"
       timezone: "Asia/Tokyo"
+    cooldown:
+      default-days: 10
+    open-pull-requests-limit: 10
     groups:
       github-actions:
         patterns:
